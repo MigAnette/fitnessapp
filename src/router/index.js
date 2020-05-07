@@ -1,23 +1,49 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+// components imported for routing
+import FrontPage from '@/views/FrontPage.vue';
+
+// components from routine categories
+import RoutineCategories from '@/views/routineCategories/RoutineCategories.vue';
+
+// components from my routines
+import MyRoutines from '@/views/myRoutines/MyRoutines.vue';
+
+// components from profile
+import Profile from '@/views/profile/Profile.vue';
+
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'FrontPage',
+    component: FrontPage
   },
+
+  // Routes for Routine categories
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/kategorier',
+    name: 'RoutineCategories',
+    component: RoutineCategories
+  },
+
+  // Routes for My Routine
+  {
+    path: '/minerutiner',
+    name: 'MyRoutines',
+    component: MyRoutines
+  },
+
+  // Routines for Profile
+  {
+    path: '/profil',
+    name: 'Profile',
+    component: Profile
   }
+ 
 ]
 
 const router = new VueRouter({
