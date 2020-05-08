@@ -1,6 +1,5 @@
 <template>
   <div>
-      <back-button></back-button>
        <div v-if="navName1">this is kategorier pages from RoutineCategories
            <navigation-button :routeName="kategorier" buttonValue="Fortsæt"></navigation-button>
        </div>
@@ -15,13 +14,11 @@
 
 <script>
 import NavigationButton from '@/components/buttons/NavigationButton.vue';
-import BackButton from "@/components/buttons/BackButton.vue";
 
 export default {
   name: 'CompletedRoutine',
   components: {
     NavigationButton,
-    BackButton
   },
   data() {
   return {
