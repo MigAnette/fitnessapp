@@ -37,12 +37,12 @@ const routes = [
 
   // Routes for Combined Pages
   {
-    path: "/:nav_name/:routine_id",
+    path: "/:nav_name/rutine/:routine_id",
     name: "Routine",
     component: Routine,
   },
   {
-    path: "/:nav_name/:routine_id/completed",
+    path: "/:nav_name/rutine/:routine_id/completed",
     name: "CompletedRoutine",
     component: CompletedRoutine,
   },
