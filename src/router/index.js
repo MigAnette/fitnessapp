@@ -6,6 +6,10 @@ import FrontPage from '@/views/FrontPage.vue';
 
 // components from routine categories
 import RoutineCategories from '@/views/routineCategories/RoutineCategories.vue';
+import SelectedCategory from '@/views/routineCategories/SelectedCategory.vue';
+import PreRoutine from '@/views/routineCategories/PreRoutine.vue';
+import PreCompletedRoutine from '@/views/routineCategories/PreCompletedRoutine.vue';
+
 
 // components from my routines
 import MyRoutines from '@/views/myRoutines/MyRoutines.vue';
@@ -28,6 +32,21 @@ Vue.use(VueRouter)
     path: '/kategorier',
     name: 'RoutineCategories',
     component: RoutineCategories
+  },
+  {
+    path: '/kategorier/:category_name',
+    name: 'SelectedCategory',
+    component: SelectedCategory
+  },
+  {
+    path: '/kategorier/:category_name/:routine_id',
+    name: 'PreRoutine',
+    component: PreRoutine
+  },
+  {
+    path: '/kategorier/:category_name/:routine_id/completed',
+    name: 'PreCompletedRoutine',
+    component: PreCompletedRoutine
   },
 
   // Routes for My Routine
