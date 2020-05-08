@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <v-btn :to="{name: 'RoutineCategories'}">Log ind</v-btn>
-  </div>
+  <div>ExerciseCard</div>
 </template>
 
 <script>
 export default {
-  name: 'FrontPage',
+  name: 'ExerciseCard',
   data() {
   return {
   };

@@ -1,22 +1,23 @@
 <template>
   <v-app>
-    <router-view></router-view>
+    <v-container>
+      <router-view :key="$route.fullPath"></router-view>
+    </v-container>
     <bottom-nav></bottom-nav>
   </v-app>
 </template>
 
 <script>
-import BottomNav from '@/components/layout/BottomNav.vue';
+import BottomNav from "@/components/layout/BottomNav.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     BottomNav
   },
   data() {
-  return {
-  };
- },
+    return {};
+  }
 };
 </script>
 
