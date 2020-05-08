@@ -15,7 +15,7 @@ export default {
   data() {
   return {
     routeName: 'MyCompletedRoutine',
-    routeParams: '{routine_id: this.$route.params.routine_id}'
+    routeParams: {routine_id: this.$route.params.routine_id}
   };
  },
 };

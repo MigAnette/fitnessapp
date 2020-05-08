@@ -1,5 +1,5 @@
 <template>
-  <v-btn :to="{name: routeName, params: routeParams}">{{buttonValue}}</v-btn>
+  <v-btn color="#FFAE8A" rounded class="white--text" :to="{name: routeName, params: routeParams}">{{buttonValue}}</v-btn>
 </template>
 
 <script>

@@ -1,14 +1,20 @@
 <template>
   <div>
-    <v-btn :to="{name: 'History'}">Historik</v-btn>
+    <navigation-button :routeName="routeName" buttonValue="Historik"></navigation-button>
   </div>
 </template>
 
 <script>
+import NavigationButton from '@/components/buttons/NavigationButton.vue';
+
 export default {
   name: 'Profile',
+  components: {
+    NavigationButton
+  },
   data() {
   return {
+    routeName: 'History'
   };
  },
 };

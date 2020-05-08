@@ -17,7 +17,7 @@ export default {
   data() {
   return {
     excersice: 'PickExercise',
-    myRoutines: 'MyRoutines'
+    myRoutines: 'MyRoutines',
   };
  },
 };

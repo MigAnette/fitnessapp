@@ -1,14 +1,20 @@
 <template>
   <div>
-      <v-btn :to="{name: 'MakeRoutine'}">Øvelse</v-btn>
+      <navigation-button :routeName="routeName" buttonValue="Øvelser"></navigation-button>
   </div>
 </template>
 
 <script>
+import NavigationButton from '@/components/buttons/NavigationButton.vue';
+
 export default {
   name: 'PickExercise',
+  components: {
+    NavigationButton
+  },
   data() {
   return {
+    routeName: 'MakeRoutine'
   };
  },
 };
