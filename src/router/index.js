@@ -13,6 +13,10 @@ import PreCompletedRoutine from '@/views/routineCategories/PreCompletedRoutine.v
 
 // components from my routines
 import MyRoutines from '@/views/myRoutines/MyRoutines.vue';
+import MakeRoutine from '@/views/myRoutines/MakeRoutine.vue';
+import PickExercise from '@/views/myRoutines/PickExercise.vue';
+import MyRoutine from '@/views/myRoutines/MyRoutine.vue';
+import MyCompletedRoutine from '@/views/myRoutines/MyCompletedRoutine.vue';
 
 // components from profile
 import Profile from '@/views/profile/Profile.vue';
@@ -54,6 +58,26 @@ Vue.use(VueRouter)
     path: '/minerutiner',
     name: 'MyRoutines',
     component: MyRoutines
+  },
+  {
+    path: '/minerutiner/lav-rutine',
+    name: 'MakeRoutine',
+    component: MakeRoutine
+  },
+  {
+    path: '/minerutiner/lav-rutine/øvelser',
+    name: 'PickExercise',
+    component: PickExercise
+  },
+  {
+    path: '/minerutiner/:routine_id',
+    name: 'MyRoutine',
+    component: MyRoutine
+  },
+  {
+    path: '/minerutiner/:routine_id/completed',
+    name: 'MyCompletedRoutine',
+    component: MyCompletedRoutine
   },
 
   // Routines for Profile
