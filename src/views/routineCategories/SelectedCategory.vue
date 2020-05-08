@@ -1,5 +1,6 @@
 <template>
   <div>
+    <back-button></back-button>
     <v-btn
       :to="{name: 'PreRoutine', params: {category_name: this.$route.params.category_name, routine_id: id}}"
     >Rutine</v-btn>
@@ -10,8 +11,13 @@
 </template>
 
 <script>
+import BackButton from "@/components/buttons/BackButton.vue";
+
 export default {
   name: "SelectedCategory",
+  components: {
+     BackButton
+  },
   data() {
     return {
       id: "hej",
