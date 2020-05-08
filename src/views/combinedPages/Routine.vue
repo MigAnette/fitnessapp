@@ -1,9 +1,15 @@
 <template>
   <div>
       
-      <div v-if="navName1">this is kategorier pages</div>
+      <div v-if="navName1">this is kategorier pages
+
+      <v-btn :to="{name: 'CompletedRoutine', params: {nav_name: 'kategorier', routine_id: id}}">Færdig</v-btn>
+      </div>
      
-      <div v-if="navName2">this is minerutiner pages</div>
+      <div v-if="navName2">this is minerutiner pages
+
+      <v-btn :to="{name: 'CompletedRoutine', params: {nav_name: 'minerutiner', routine_id: id}}">Færdig</v-btn>
+      </div>
 
 
 
@@ -16,7 +22,8 @@ export default {
   data() {
   return {
       navName1: Boolean,
-      navName2: Boolean
+      navName2: Boolean,
+      id: 'hej'
   };
  },
  created() {

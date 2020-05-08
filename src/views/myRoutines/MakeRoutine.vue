@@ -1,16 +1,23 @@
 <template>
   <div>
       <p>MakeRoutine</p>
-      <v-btn :to="{name: 'PickExercise'}">Øvelser</v-btn>
-      <v-btn :to="{name: 'MyRoutines'}">Færdig</v-btn>
+      <navigation-button :routeName="excersice" buttonValue="Øvelser"></navigation-button>
+      <navigation-button :routeName="myRoutines" buttonValue="Færdig"></navigation-button>
   </div>
 </template>
 
 <script>
+import NavigationButton from '@/components/buttons/NavigationButton.vue';
+
 export default {
   name: 'MakeRoutine',
+  components: {
+    NavigationButton
+  },
   data() {
   return {
+    excersice: 'PickExercise',
+    myRoutines: 'MyRoutines'
   };
  },
 };
