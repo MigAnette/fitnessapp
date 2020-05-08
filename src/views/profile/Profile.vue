@@ -1,5 +1,7 @@
 <template>
-  <div>Profile</div>
+  <div>
+    <v-btn :to="{name: 'History'}">Historik</v-btn>
+  </div>
 </template>
 
 <script>

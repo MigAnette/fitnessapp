@@ -1,14 +1,15 @@
 <template>
   <div>
-    <v-btn :to="{name: 'RoutineCategories'}">Log ind</v-btn>
+      <v-btn :to="{name: 'SingleHistory', params: {history_id: id}}">Historie</v-btn>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'FrontPage',
+  name: 'History',
   data() {
   return {
+      id: 'hej'
   };
  },
 };
