@@ -1,22 +1,26 @@
 <template>
   <v-app>
-    <v-container>
+   <component :is="layout">
+
       <router-view :key="$route.fullPath"></router-view>
-    </v-container>
-    <bottom-nav></bottom-nav>
+   </component>
+
+
   </v-app>
 </template>
 
 <script>
-import BottomNav from "@/components/layout/BottomNav.vue";
+const default_layout = "default";
 
 export default {
   name: "App",
-  components: {
-    BottomNav
-  },
   data() {
     return {};
+  },
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || default_layout) + '-layout';
+    }
   }
 };
 </script>
