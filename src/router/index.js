@@ -57,6 +57,7 @@ const routes = [
   {
     path: "/kategorier/:category_name",
     name: "SelectedCategory",
+    meta: {layout: "nav-bar"}, 
     component: SelectedCategory,
   },
   {
@@ -108,6 +109,7 @@ const routes = [
   {
     path: "/profil/historie",
     name: "History",
+    meta: {layout: "nav-bar"},
     component: History,
   },
   {
