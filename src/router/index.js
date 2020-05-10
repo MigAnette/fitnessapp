@@ -51,6 +51,7 @@ const routes = [
   {
     path: "/kategorier",
     name: "RoutineCategories",
+    meta: {layout: "nav-bar"},
     component: RoutineCategories,
   },
   {
@@ -73,6 +74,7 @@ const routes = [
   {
     path: "/minerutiner",
     name: "MyRoutines",
+    meta: {layout: "nav-bar"},
     component: MyRoutines,
   },
   {
@@ -100,6 +102,7 @@ const routes = [
   {
     path: "/profil",
     name: "Profile",
+    meta: {layout: "nav-bar"},
     component: Profile,
   },
   {
