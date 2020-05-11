@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <routine-card v-for="(content, index) in routineContent" :key="index" :navName="navName" :content="content"></routine-card>
+    <routine-card v-for="(content, index) in myRoutines" :key="index" :navName="navName" :content="content"></routine-card>
 
     <v-btn :to="{name: 'MakeRoutine'}" color="#FFAE8A" class="white--text" fab right absolute> <v-icon>mdi-plus</v-icon> </v-btn>
 
@@ -25,11 +25,16 @@ export default {
   return {
     id: 'hej',
     navName: 'minerutiner',
-    routineContent: [
-        {name: 'Styrketræning', exercises: 5}
-      ]
   };
  },
+ computed: {
+   myRoutines() {
+     return this.$store.getters.myRoutines;
+   }
+ },
+ created() {
+   this.$store.dispatch("fetchMyRoutines");
+ }
 };
 </script>
 

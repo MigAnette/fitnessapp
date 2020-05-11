@@ -27,9 +27,9 @@ export default {
       id: "hej",
       navName: "kategorier",
       routineContent: [
-        {name: 'Beginner', exercises: 4},
-        {name: 'Intermediate', exercises: 6},
-        {name: 'Advanced', exercises: 10}
+        {name: 'Beginner', exercises: 4, id: '2334'},
+        {name: 'Intermediate', exercises: 6, id: '1232345'},
+        {name: 'Advanced', exercises: 10, id: '213333'}
       ]
     };
   }
