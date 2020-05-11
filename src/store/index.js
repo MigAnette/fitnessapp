@@ -6,15 +6,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    routineCategory: [],
+    categoryName: "",
+    predRoutines: [],
+    myRoutines: []
   },
   mutations: {
+    SET_CATEGORY_NAME(state, name) {
+      state.categoryName = name;
+    }
+    // --------- preRoutines----------
 
   },
   actions: {
+    // --------- preRoutines----------
    
   },
   getters: {
-   
+    // --------- preRoutines----------
+    
   },
 });
