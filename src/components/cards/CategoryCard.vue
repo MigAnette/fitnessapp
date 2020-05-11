@@ -1,12 +1,12 @@
 <template>
-  <v-card class="category-card corner ma-4" :to="{name: 'SelectedCategory', params: {category_name: content.id}}">
+  <v-card class="category-card corner ma-4" :to="{name: 'SelectedCategory', params: {category_name: content}}">
     <v-img
       src="@/assets/treadmill.jpg"
       aspect-ratio="2.4"
       gradient="to top right, rgba(25,32,72,.7), rgba(200,115,201,.33)"
     >
-      <v-card-text class="white--text pb-0">{{content.programs}} Programs</v-card-text>
-      <v-card-title class="white--text pt-0" v-text="content.category"></v-card-title>
+      <v-card-text class="white--text pb-0">3 Programs</v-card-text>
+      <v-card-title class="white--text pt-0" >{{content | capitalize}} </v-card-title>
     </v-img>
   </v-card>
 </template>
@@ -17,7 +17,14 @@ export default {
   props: ["content"],
   data() {
     return {};
+  },
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
 };
 </script>
 
