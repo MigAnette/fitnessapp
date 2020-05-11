@@ -1,5 +1,5 @@
 <template>
-  <v-card class="routine-card corner ma-4" :to="{name: 'Routine', params: {nav_name: navName, routine_id: content.name}}">
+  <v-card class="routine-card corner ma-4" :to="{name: 'Routine', params: {nav_name: navName, routine_id: content.id}}">
     <v-img
       src="@/assets/treadmill.jpg"
       aspect-ratio="2.4"
