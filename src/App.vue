@@ -1,11 +1,8 @@
 <template>
   <v-app>
    <component :is="layout">
-
       <router-view :key="$route.fullPath"></router-view>
    </component>
-
-
   </v-app>
 </template>
 
