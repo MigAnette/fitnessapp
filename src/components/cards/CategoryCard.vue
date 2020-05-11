@@ -5,7 +5,7 @@
       aspect-ratio="2.4"
       gradient="to top right, rgba(25,32,72,.7), rgba(200,115,201,.33)"
     >
-      <v-card-text class="white--text pb-0">{{content.name}}</v-card-text>
+      <v-card-text class="white--text pb-0">{{content.programs}} Programs</v-card-text>
       <v-card-title class="white--text pt-0" v-text="content.category"></v-card-title>
     </v-img>
   </v-card>
