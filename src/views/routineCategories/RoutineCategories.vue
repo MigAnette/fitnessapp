@@ -1,6 +1,6 @@
 <template>
   <div>  
-  <category-card v-for="(content, index) in categoryContent" :key="index" :content="content"></category-card>
+  <category-card v-for="(content, index) in routines" :key="index" :content="content"></category-card>
   
   </div>
 </template>
@@ -22,6 +22,15 @@ export default {
     ]
   };
  },
+ computed: {
+   routines() {
+     return this.$store.getters.routines;
+   }
+ },
+ created() {
+   this.$store.dispatch('fetchRoutines');
+   console.log(this.$store.getters.contacts);
+ }
 };
 </script>
 
