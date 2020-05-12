@@ -1,6 +1,9 @@
 <template>
   <div>
     <navigation-button :routeName="routeName" buttonValue="Historik"></navigation-button>
+  
+    <div>{{user.name}} </div>
+  
   </div>
 </template>
 
@@ -17,6 +20,14 @@ export default {
     routeName: 'History'
   };
  },
+ computed: {
+   user() {
+     return this.$store.getters.user;
+   }
+ },
+ created() {
+   this.$store.dispatch("fetchUser");
+ }
 };
 </script>
 

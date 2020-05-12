@@ -13,7 +13,8 @@ export default new Vuex.Store({
     currentUser: "ca9SpNZEzoQ79hBHipCn",
     exerciseTest: [],
     routineId: "",
-    routine: {}
+    routine: {},
+    user: {}
   },
   mutations: {
     // testing exercise
@@ -44,6 +45,10 @@ export default new Vuex.Store({
     // --------- individualRoutine----------
     SET_ROUTINE(state, payload) {
       state.routine = payload;
+    },
+    // User
+    SET_USER(state, payload) {
+      state.user = payload;
     }
 
   },
@@ -63,7 +68,6 @@ export default new Vuex.Store({
           commit("SET_SELECTED_ROUTINES", selectedRoutines);
         });
     },
-
     // --------- myRoutines----------
     fetchMyRoutines({ commit }) {
       db.collection("routine")
@@ -101,7 +105,18 @@ export default new Vuex.Store({
 
         commit("SET_ROUTINE", data);
       })
+    },
+// --------- user ----------
+    fetchUser({commit}) {
+      db.collection('users').doc(this.state.currentUser).get().then(doc => {
+        if(!doc.exists) return;
+        let data = doc.data();
+        data.id = doc.id;
+
+        commit("SET_USER", data);
+      })
     }
+
   },
   getters: {
     // --------- selectedRoutines----------
@@ -122,6 +137,10 @@ export default new Vuex.Store({
     },
     exerciseTest(state) {
       return state.exerciseTest;
+    },
+    // --------- user ----------
+    user(state) {
+      return state.user;
     }
   },
 });

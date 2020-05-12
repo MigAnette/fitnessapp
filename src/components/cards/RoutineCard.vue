@@ -6,7 +6,7 @@
       gradient="to top right, rgba(25,32,72,.7), rgba(200,115,201,.33)"
       class="pb-0"
     >
-      <v-card-text class="white--text pt-12 pb-0">{{content.exercises}} Øvelser</v-card-text>
+      <v-card-text class="white--text pt-12 pb-0">{{content.programs}} Øvelser</v-card-text>
       <v-card-title class="white--text py-0" v-text="content.name"></v-card-title>
     </v-img>
   </v-card>
