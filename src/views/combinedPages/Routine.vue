@@ -6,6 +6,10 @@
       <navigation-button :routeName="routeName" buttonValue="Færdig" :routeParams="kategorierParams"></navigation-button>
     </div>
 
+    <div v-for="(content, index) in routine.exercises" :key="index">
+      {{content.name}}
+    </div>
+
     <div v-if="navName2">
       this is minerutiner pages from MyRoutines
       <navigation-button :routeName="routeName" buttonValue="Færdig" :routeParams="mineRutinerParams"></navigation-button>
