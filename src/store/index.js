@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     categoryName: "",
-    predRoutines: [],
+    selectedRoutines: [],
     myRoutines: [],
     currentUser: "ca9SpNZEzoQ79hBHipCn",
   },
@@ -15,15 +15,33 @@ export default new Vuex.Store({
     SET_CATEGORY_NAME(state, name) {
       state.categoryName = name;
     },
-    // --------- preRoutines----------
+    // --------- selectedRoutines----------
+    SET_SELECTED_ROUTINES(state, payload) {
+      state.selectedRoutines = payload;
+    },
 
     // --------- myRoutines----------
     SET_MY_ROUTINES(state, payload) {
       state.myRoutines = payload;
-    }
+    },
   },
   actions: {
-    // --------- preRoutines----------
+    // --------- selectedRoutines----------
+    fetchSelectedRoutines({ commit }) {
+      db.collection("routine")
+        .where("category", "==", this.state.categoryName)
+        .get()
+        .then((snapshot) => {
+          const selectedRoutines = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            data.id = doc.id;
+            selectedRoutines.push(data);
+          });
+          commit("SET_SELECTED_ROUTINES", selectedRoutines);
+        });
+    },
+
     // --------- myRoutines----------
     fetchMyRoutines({ commit }) {
       db.collection("routine")
@@ -40,10 +58,14 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    // --------- preRoutines----------
+    // --------- selectedRoutines----------
+    selectedRoutines(state) {
+      return state.selectedRoutines;
+      
+    },
     // --------- myRoutines----------
     myRoutines(state) {
       return state.myRoutines;
-    }
+    },
   },
 });

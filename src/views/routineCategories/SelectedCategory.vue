@@ -2,7 +2,7 @@
   <div>
     <back-button></back-button>
 
-    <routine-card v-for="(content, index) in routineContent" :key="index" :navName="navName" :content="content"></routine-card>
+    <routine-card v-for="content in selectedRoutines" :key="content.id" :navName="navName" :content="content"></routine-card>
 
     <!-- <v-btn
       :to="{name: 'PreRoutine', params: {category_name: this.$route.params.category_name, routine_id: id}}"
@@ -26,12 +26,15 @@ export default {
     return {
       id: "hej",
       navName: "kategorier",
-      routineContent: [
-        {name: 'Beginner', exercises: 4, id: '2334'},
-        {name: 'Intermediate', exercises: 6, id: '1232345'},
-        {name: 'Advanced', exercises: 10, id: '213333'}
-      ]
     };
+  },
+  computed: {
+    selectedRoutines() {
+      return this.$store.getters.selectedRoutines;
+    }
+  },
+  created() {
+    this.$store.dispatch("fetchSelectedRoutines");
   }
 };
 </script>
