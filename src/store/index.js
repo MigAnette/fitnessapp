@@ -9,9 +9,12 @@ export default new Vuex.Store({
     categoryName: "",
     selectedRoutines: [],
     myRoutines: [],
+    pickExercises: [],
     currentUser: "ca9SpNZEzoQ79hBHipCn",
   },
   mutations: {
+    // testing exercise
+    // changning the category name, when category is clicked on RoutineCategories
     SET_CATEGORY_NAME(state, name) {
       state.categoryName = name;
     },
@@ -23,6 +26,10 @@ export default new Vuex.Store({
     // --------- myRoutines----------
     SET_MY_ROUTINES(state, payload) {
       state.myRoutines = payload;
+    },
+    // --------- pickExercise----------
+    SET_PICK_EXERCISES(state, payload) {
+      state.pickExercises = payload;
     },
   },
   actions: {
@@ -56,16 +63,33 @@ export default new Vuex.Store({
           commit("SET_MY_ROUTINES", myRoutines);
         });
     },
+    // --------- pickExercise----------
+    fetchPickExercises({ commit }) {
+      db.collection("exercises")
+        .get()
+        .then((snapshot) => {
+          const pickExercises = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            data.id = doc.id;
+            pickExercises.push(data);
+          });
+          commit("SET_PICK_EXERCISES", pickExercises);
+        });
+    },
   },
   getters: {
     // --------- selectedRoutines----------
     selectedRoutines(state) {
       return state.selectedRoutines;
-      
     },
     // --------- myRoutines----------
     myRoutines(state) {
       return state.myRoutines;
+    },
+    // --------- pickExercise----------
+    pickExercises(state) {
+      return state.pickExercises;
     },
   },
 });

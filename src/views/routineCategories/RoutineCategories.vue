@@ -35,7 +35,7 @@ export default {
   created() {
     db.collection("routine")
       .where("author", "==", "predefined")
-      .onSnapshot(snapshot => {
+      .get().then(snapshot => {
         const routineCategory = [];
         snapshot.forEach(doc => {
           const data = doc.data();
