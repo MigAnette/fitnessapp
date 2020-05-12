@@ -11,14 +11,14 @@ export default new Vuex.Store({
     myRoutines: [],
     pickExercises: [],
     currentUser: "ca9SpNZEzoQ79hBHipCn",
-    exerciseTest: {},
+    exerciseTest: [],
     routineId: "",
     routine: {}
   },
   mutations: {
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {
-      state.exerciseTest = payload;
+      state.exerciseTest.push(payload);
     },
     // changning the id to get the individual routine
     SET_ROUTINE_ID(state, payload) {
@@ -119,6 +119,9 @@ export default new Vuex.Store({
     // --------- individualRoutine----------
     routine(state) {
       return state.routine;
+    },
+    exerciseTest(state) {
+      return state.exerciseTest;
     }
   },
 });

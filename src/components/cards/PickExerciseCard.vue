@@ -1,6 +1,6 @@
 <template>
   <v-card class="ma-4" @click="sendData">
-    <v-img :src="content.image" aspect-ratio="1.6"></v-img>
+    <v-img :src="content.image"></v-img>
     <v-card-title>{{content.name}}</v-card-title>
   </v-card>
 </template>
