@@ -1,6 +1,6 @@
 <template>
   <div>
-    <category-card v-for="(content, index) in routineCategory" :key="index" :content="content"></category-card>
+    <category-card v-for="content in routineCategory" :key="content.id" :content="content"></category-card>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   created() {
     db.collection("routine")
       .where("author", "==", "predefined")
-      .onSnapshot(snapshot => {
+      .get().then(snapshot => {
         const routineCategory = [];
         snapshot.forEach(doc => {
           const data = doc.data();
