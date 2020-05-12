@@ -39,7 +39,14 @@ export default {
       }
     };
   },
+  computed: {
+    routine() {
+      return this.$store.getters.routine;
+    }
+  },
   created() {
+    this.$store.dispatch('fetchIndividualRoutine');
+
     if (this.$route.params.nav_name == "kategorier") {
       this.navName1 = true;
       this.navName2 = false;
