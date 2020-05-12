@@ -11,9 +11,19 @@ export default new Vuex.Store({
     myRoutines: [],
     pickExercises: [],
     currentUser: "ca9SpNZEzoQ79hBHipCn",
+    exerciseTest: {},
+    routineId: "",
+    routine: {}
   },
   mutations: {
     // testing exercise
+    SET_EXERCISE_TEST(state, payload) {
+      state.exerciseTest = payload;
+    },
+    // changning the id to get the individual routine
+    SET_ROUTINE_ID(state, payload) {
+      state.routineId = payload;
+    },
     // changning the category name, when category is clicked on RoutineCategories
     SET_CATEGORY_NAME(state, name) {
       state.categoryName = name;
@@ -31,6 +41,11 @@ export default new Vuex.Store({
     SET_PICK_EXERCISES(state, payload) {
       state.pickExercises = payload;
     },
+    // --------- individualRoutine----------
+    SET_ROUTINE(state, payload) {
+      state.routine = payload;
+    }
+
   },
   actions: {
     // --------- selectedRoutines----------
@@ -77,6 +92,16 @@ export default new Vuex.Store({
           commit("SET_PICK_EXERCISES", pickExercises);
         });
     },
+    // --------- individualRoutine----------
+    fetchIndividualRoutine({commit}) {
+      db.collection("routine").doc(this.state.routineId).get().then(doc => {
+        if(!doc.exists) return;
+        let data = doc.data();
+        data.id = doc.id;
+
+        commit("SET_ROUTINE", data);
+      })
+    }
   },
   getters: {
     // --------- selectedRoutines----------
@@ -91,5 +116,9 @@ export default new Vuex.Store({
     pickExercises(state) {
       return state.pickExercises;
     },
+    // --------- individualRoutine----------
+    routine(state) {
+      return state.routine;
+    }
   },
 });

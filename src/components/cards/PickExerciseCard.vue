@@ -16,12 +16,13 @@ export default {
  methods: {
      sendData() {
         const data = {
-            image: this.props.content.image,
-            name: this.props.content.name,
-            repsAndSets: this.props.content.repsAndSets
+            image: this.content.image,
+            name: this.content.name,
+            repsAndSets: this.content.repsAndSets,
+            description: this.content.description
         };
 
-        this.$store.commit("SET_EXERCISE_TEXT", data);
+        this.$store.commit("SET_EXERCISE_TEST", data);
 
      }
  }
