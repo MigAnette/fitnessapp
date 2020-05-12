@@ -11,9 +11,13 @@ export default new Vuex.Store({
     myRoutines: [],
     pickExercises: [],
     currentUser: "ca9SpNZEzoQ79hBHipCn",
+    exerciseTest: {}
   },
   mutations: {
     // testing exercise
+    SET_EXERCISE_TEST(state, payload) {
+      state.exerciseTest = payload;
+    },
     // changning the category name, when category is clicked on RoutineCategories
     SET_CATEGORY_NAME(state, name) {
       state.categoryName = name;
