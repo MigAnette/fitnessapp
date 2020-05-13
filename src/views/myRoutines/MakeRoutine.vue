@@ -33,8 +33,8 @@ export default {
   },
   methods: {
     handleCreate() {
-       this.$store.dispatch('createRoutine');
-      // this.$router.push({ name: this.myRoutines });
+       this.$store.dispatch('routine/createRoutine');
+      this.$router.push({ name: this.myRoutines });
     },
     limitExercises() {
       if (this.exercise.length >= 5) {
@@ -45,10 +45,10 @@ export default {
   computed: {
     exercise: {
       get() {
-        return this.$store.state.exerciseTest;
+        return this.$store.getters['exercise/exerciseTest'];
       },
       set(value) {
-        this.$store.commit('UPDATE_EXERCISE', value);
+        this.$store.commit('exercise/UPDATE_EXERCISE', value);
       }
     }
   },

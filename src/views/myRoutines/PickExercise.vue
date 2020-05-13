@@ -23,11 +23,11 @@ export default {
   },
   computed: {
     pickExercises() {
-      return this.$store.getters.pickExercises;
+      return this.$store.getters['exercise/pickExercises'];
     }
   },
   created() {
-    this.$store.dispatch("fetchPickExercises");
+    this.$store.dispatch("exercise/fetchPickExercises");
   }
 };
 </script>

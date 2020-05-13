@@ -19,7 +19,7 @@ export default {
  },
  methods: {
    navigation(id) {
-     this.$store.commit("SET_HISTORY_ID", id);
+     this.$store.commit("user/SET_HISTORY_ID", id);
       this.$router.push({
         name: "SingleHistory",
         params: { history_id: id }
@@ -28,11 +28,11 @@ export default {
  },
  computed: {
    history() {
-     return this.$store.getters.history;
+     return this.$store.getters['user/history'];
    }
  },
  created() {
-   this.$store.dispatch("fetchHistory");
+   this.$store.dispatch("user/fetchHistory");
  }
 };
 </script>

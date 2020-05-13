@@ -34,7 +34,7 @@ export default {
         ]
       };
 
-      this.$store.commit("SET_EXERCISE_TEST", data);
+      this.$store.commit("exercise/SET_EXERCISE_TEST", data);
       this.$router.push({
         name: this.routeName
       });

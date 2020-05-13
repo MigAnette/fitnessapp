@@ -25,11 +25,11 @@ export default {
  },
  computed: {
    singleHistory() {
-     return this.$store.getters.singleHistory;
+     return this.$store.getters['user/singleHistory'];
    }
  },
  created() {
-   this.$store.dispatch("fetchSingleHistory");
+   this.$store.dispatch("user/fetchSingleHistory");
  }
 };
 </script>

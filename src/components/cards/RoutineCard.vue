@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     navigation() {
-      this.$store.commit("SET_ROUTINE_ID", this.content.id);
+      this.$store.commit("routine/SET_ROUTINE_ID", this.content.id);
       this.$router.push({
         name: "Routine",
         params: { nav_name: this.navName, routine_id: this.content.id }
