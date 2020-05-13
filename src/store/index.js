@@ -20,6 +20,11 @@ export default new Vuex.Store({
     singleHistory: {}
   },
   mutations: {
+    // updating exercise test
+    UPDATE_EXERCISE(state, payload) {
+      state.exerciseTest = payload;
+    },
+
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {
       state.exerciseTest.push(payload);
@@ -75,10 +80,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    // --------- makeRoutine----------
+    createRoutine({state}) {
+      console.log(state.exerciseTest);
+    },
     // --------- selectedRoutines----------
-    fetchSelectedRoutines({ commit }) {
+    fetchSelectedRoutines({ commit, state }) {
       db.collection("routine")
-        .where("category", "==", this.state.categoryName)
+        .where("category", "==", state.categoryName)
         .get()
         .then((snapshot) => {
           const selectedRoutines = [];
@@ -91,9 +100,9 @@ export default new Vuex.Store({
         });
     },
     // --------- myRoutines----------
-    fetchMyRoutines({ commit }) {
+    fetchMyRoutines({ commit, state }) {
       db.collection("routine")
-        .where("author", "==", this.state.currentUser)
+        .where("author", "==", state.currentUser)
         .onSnapshot((snapshot) => {
           const myRoutines = [];
           snapshot.forEach((doc) => {
@@ -119,9 +128,9 @@ export default new Vuex.Store({
         });
     },
     // --------- individualRoutine----------
-    fetchIndividualRoutine({ commit }) {
+    fetchIndividualRoutine({ commit, state }) {
       db.collection("routine")
-        .doc(this.state.routineId)
+        .doc(state.routineId)
         .get()
         .then((doc) => {
           if (!doc.exists) return;
@@ -132,9 +141,9 @@ export default new Vuex.Store({
         });
     },
     // --------- user ----------
-    fetchUser({ commit }) {
+    fetchUser({ commit, state }) {
       db.collection("users")
-        .doc(this.state.currentUser)
+        .doc(state.currentUser)
         .get()
         .then((doc) => {
           if (!doc.exists) return;
@@ -146,9 +155,9 @@ export default new Vuex.Store({
     },
 
     // --------- history ----------
-    fetchHistory({ commit }) {
+    fetchHistory({ commit, state }) {
       db.collection("users")
-        .doc(this.state.currentUser)
+        .doc(state.currentUser)
         .collection("history")
         .get()
         .then((snapshot) => {
@@ -163,11 +172,11 @@ export default new Vuex.Store({
     },
 
     // --------- singleHistory ----------
-    fetchSingleHistory({ commit }) {
+    fetchSingleHistory({ commit, state }) {
       db.collection("users")
-        .doc(this.state.currentUser)
+        .doc(state.currentUser)
         .collection("history")
-        .doc(this.state.historyId)
+        .doc(state.historyId)
         .get()
         .then((doc) => {
           if (!doc.exists) return;

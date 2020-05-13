@@ -2,8 +2,9 @@
   <div>
     <back-button></back-button>
     <p>MakeRoutine</p>
-    <make-routine-exercise-card v-for="(content, index) in exercise" :key="index" :content="content"></make-routine-exercise-card>
+    <make-routine-exercise-card v-for="(content, index) in exercise" :key="index" :content.sync="content"></make-routine-exercise-card>
 
+    <!-- <p>{{exercise[0].repsAndKg}} </p> -->
     <navigation-button v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>
     <functions-button buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
   </div>
@@ -32,8 +33,8 @@ export default {
   },
   methods: {
     handleCreate() {
-      //  this.$store.dispatch('something');
-      this.$router.push({ name: this.myRoutines });
+       this.$store.dispatch('createRoutine');
+      // this.$router.push({ name: this.myRoutines });
     },
     limitExercises() {
       if (this.exercise.length >= 5) {
@@ -42,8 +43,13 @@ export default {
     }
   },
   computed: {
-    exercise() {
-      return this.$store.getters.exerciseTest;
+    exercise: {
+      get() {
+        return this.$store.state.exerciseTest;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_EXERCISE', value);
+      }
     }
   },
   created() {
