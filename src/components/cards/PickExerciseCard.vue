@@ -1,7 +1,15 @@
 <template>
-  <v-card class="ma-4" @click="sendData">
-    <v-img :src="content.image"></v-img>
-    <v-card-title>{{content.name}}</v-card-title>
+  <v-card class="ma-4 corner" @click="sendData">
+    <v-row align="center">
+      <v-col cols="3" class="py-0">
+        <v-avatar tile>
+          <v-img :src="content.image"></v-img>
+        </v-avatar>
+      </v-col>
+      <v-col cols="9" class="py-1">
+        <v-card-title>{{content.name}}</v-card-title>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
