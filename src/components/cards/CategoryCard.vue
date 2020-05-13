@@ -38,7 +38,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
 .corner {
   border-radius: 16px !important;
 }
