@@ -36,16 +36,13 @@ export default {
     db.collection("routine")
       .where("author", "==", "predefined")
       .get().then(snapshot => {
-        const routineCategory = [];
         snapshot.forEach(doc => {
           const data = doc.data();
           data.id = doc.id;
           if (!this.existsCategory(data.category)) {
             this.routineCategory.push(data.category);
-            console.log(data.category);
           }
         });
-        console.log(routineCategory);
       });
   },
   

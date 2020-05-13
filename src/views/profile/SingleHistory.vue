@@ -1,6 +1,13 @@
 <template>
   <div>
     <back-button></back-button>
+
+    <div>{{singleHistory.name}} </div>
+
+    <div v-for="(content, index) in singleHistory.exercises" :key="index">
+      {{content.name}}
+    </div>
+
   </div>
 </template>
 
@@ -16,6 +23,14 @@ export default {
   return {
   };
  },
+ computed: {
+   singleHistory() {
+     return this.$store.getters.singleHistory;
+   }
+ },
+ created() {
+   this.$store.dispatch("fetchSingleHistory");
+ }
 };
 </script>
 
