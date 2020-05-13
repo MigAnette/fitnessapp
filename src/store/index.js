@@ -14,21 +14,27 @@ export default new Vuex.Store({
     exerciseTest: [],
     routineId: "",
     routine: {},
-    user: {}
+    user: {},
+    history: [],
+    historyId: "",
+    singleHistory: {}
   },
   mutations: {
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {
       state.exerciseTest.push(payload);
     },
+
     // changning the id to get the individual routine
     SET_ROUTINE_ID(state, payload) {
       state.routineId = payload;
     },
+
     // changning the category name, when category is clicked on RoutineCategories
     SET_CATEGORY_NAME(state, name) {
       state.categoryName = name;
     },
+
     // --------- selectedRoutines----------
     SET_SELECTED_ROUTINES(state, payload) {
       state.selectedRoutines = payload;
@@ -38,19 +44,35 @@ export default new Vuex.Store({
     SET_MY_ROUTINES(state, payload) {
       state.myRoutines = payload;
     },
+
     // --------- pickExercise----------
     SET_PICK_EXERCISES(state, payload) {
       state.pickExercises = payload;
     },
+
     // --------- individualRoutine----------
     SET_ROUTINE(state, payload) {
       state.routine = payload;
     },
-    // User
+
+    // --------- user ----------
     SET_USER(state, payload) {
       state.user = payload;
-    }
+    },
 
+    // --------- history ----------
+    SET_HISTORY(state, payload) {
+      state.history = payload;
+    },
+
+    SET_HISTORY_ID(state, payload) {
+      state.historyId = payload;
+    },
+
+    // --------- singleHistory ----------
+    SET_SINGLE_HISTORY(state, payload) {
+      state.singleHistory = payload;
+    }
   },
   actions: {
     // --------- selectedRoutines----------
@@ -97,50 +119,103 @@ export default new Vuex.Store({
         });
     },
     // --------- individualRoutine----------
-    fetchIndividualRoutine({commit}) {
-      db.collection("routine").doc(this.state.routineId).get().then(doc => {
-        if(!doc.exists) return;
-        let data = doc.data();
-        data.id = doc.id;
+    fetchIndividualRoutine({ commit }) {
+      db.collection("routine")
+        .doc(this.state.routineId)
+        .get()
+        .then((doc) => {
+          if (!doc.exists) return;
+          let data = doc.data();
+          data.id = doc.id;
 
-        commit("SET_ROUTINE", data);
-      })
+          commit("SET_ROUTINE", data);
+        });
     },
-// --------- user ----------
-    fetchUser({commit}) {
-      db.collection('users').doc(this.state.currentUser).get().then(doc => {
-        if(!doc.exists) return;
-        let data = doc.data();
-        data.id = doc.id;
+    // --------- user ----------
+    fetchUser({ commit }) {
+      db.collection("users")
+        .doc(this.state.currentUser)
+        .get()
+        .then((doc) => {
+          if (!doc.exists) return;
+          let data = doc.data();
+          data.id = doc.id;
 
-        commit("SET_USER", data);
-      })
-    }
+          commit("SET_USER", data);
+        });
+    },
 
+    // --------- history ----------
+    fetchHistory({ commit }) {
+      db.collection("users")
+        .doc(this.state.currentUser)
+        .collection("history")
+        .get()
+        .then((snapshot) => {
+          const history = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            data.id = doc.id;
+            history.push(data);
+          });
+          commit("SET_HISTORY", history);
+        });
+    },
+
+    // --------- singleHistory ----------
+    fetchSingleHistory({ commit }) {
+      db.collection("users")
+        .doc(this.state.currentUser)
+        .collection("history")
+        .doc(this.state.historyId)
+        .get()
+        .then((doc) => {
+          if (!doc.exists) return;
+          let data = doc.data();
+          data.id = doc.id;
+
+          commit("SET_SINGLE_HISTORY", data);
+        });
+    },
   },
   getters: {
     // --------- selectedRoutines----------
     selectedRoutines(state) {
       return state.selectedRoutines;
     },
+
     // --------- myRoutines----------
     myRoutines(state) {
       return state.myRoutines;
     },
+
     // --------- pickExercise----------
     pickExercises(state) {
       return state.pickExercises;
     },
+
     // --------- individualRoutine----------
     routine(state) {
       return state.routine;
     },
+
     exerciseTest(state) {
       return state.exerciseTest;
     },
+
     // --------- user ----------
     user(state) {
       return state.user;
+    },
+
+    // --------- history ----------
+    history(state) {
+      return state.history;
+    },
+
+    // --------- singleHistory ----------
+    singleHistory(state) {
+      return state.singleHistory;
     }
   },
 });

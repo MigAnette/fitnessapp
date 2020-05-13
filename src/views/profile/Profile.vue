@@ -3,6 +3,10 @@
     <navigation-button :routeName="routeName" buttonValue="Historik"></navigation-button>
   
     <div>{{user.name}} </div>
+    <div>{{user.allReps}} </div>
+    <div v-for="(content, index) in user.achievments" :key="index">
+      {{content.name}}
+    </div>
   
   </div>
 </template>

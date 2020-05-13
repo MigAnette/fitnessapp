@@ -1,7 +1,7 @@
 <template>
   <div>
     <back-button></back-button>
-      <v-btn :to="{name: 'SingleHistory', params: {history_id: id}}">Historie</v-btn>
+      <v-btn v-for="content in history" :key="content.id" @click="navigation(content.id)">{{content.name}} </v-btn>
   </div>
 </template>
 
@@ -15,9 +15,25 @@ export default {
   },
   data() {
   return {
-      id: 'hej'
   };
  },
+ methods: {
+   navigation(id) {
+     this.$store.commit("SET_HISTORY_ID", id);
+      this.$router.push({
+        name: "SingleHistory",
+        params: { history_id: id }
+      });
+   }
+ },
+ computed: {
+   history() {
+     return this.$store.getters.history;
+   }
+ },
+ created() {
+   this.$store.dispatch("fetchHistory");
+ }
 };
 </script>
 
