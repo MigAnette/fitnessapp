@@ -28,7 +28,10 @@ export default {
         image: this.content.image,
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
-        description: this.content.description
+        description: this.content.description,
+        repsAndKg: [
+          {rep: 0, kg: 0}
+        ]
       };
 
       this.$store.commit("SET_EXERCISE_TEST", data);
