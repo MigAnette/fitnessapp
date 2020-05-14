@@ -2,7 +2,7 @@
   <div>
     <back-button></back-button>
     <p>MakeRoutine</p>
-    <make-routine-exercise-card v-for="(content, index) in exercise" :key="index" :content="content"></make-routine-exercise-card>
+    <make-routine-exercise-card v-for="(content, index) in exercise" :key="index" :i="index" :content="content"></make-routine-exercise-card>
 
     <!-- <p>{{exercise[0].repsAndKg}} </p> -->
     <navigation-button v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>

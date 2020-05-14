@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="my-5">
     <v-row align="center">
       <v-col cols="3" class="py-0">
         <v-avatar tile>
@@ -12,65 +12,59 @@
     </v-row>
     <v-divider></v-divider>
     <v-row>
-      <div v-for="(num, index) in content.repsAndKg" :key="index" class="mx-3">
-          <v-row justify="center">
-              <v-col cols="3" class="pb-0">
-                  <p class="mb-0">Sets</p>
-              </v-col>
-              <v-col cols="4" class="pb-0">
-                  <p class="mb-0">Reps</p>
-              </v-col>
-              <v-col cols="4" class="pb-0">
-                  <p class="mb-0">Vægt</p>
-              </v-col>
-              
-          </v-row>
+      <div v-if="content.repsAndSets">
         <v-row justify="center">
-          <v-col cols="3">
-            <h4 class="text-color">{{index + 1}}.</h4>
+          <v-col cols="3" class="pb-0">
+            <p class="mb-0">Sets</p>
           </v-col>
-          <v-col cols="4">
-            <v-text-field dense class="corner center-text-input" @change="updateRep(num.rep)" outlined :value="num.rep"></v-text-field>
+          <v-col cols="4" class="pb-0">
+            <p class="mb-0">Reps</p>
           </v-col>
-          <v-col cols="4">
-            <v-text-field dense class="corner center-text-input" @input="updateKg(num.kg)" suffix="Kg" outlined :value="num.kg"></v-text-field>
+          <v-col cols="4" class="pb-0">
+            <p class="mb-0">Vægt</p>
           </v-col>
         </v-row>
+
+        <rep-and-kg
+          v-for="(num, index) in content.repsAndKg"
+          :key="index"
+          class="mx-3"
+          :i="i"
+          :index="index"
+        ></rep-and-kg>
+
+        <v-row justify="center">
+          <v-btn small color="#FFAE8A" @click="addSet" rounded class="white--text mb-3">
+            <v-icon>mdi-plus</v-icon>Tilføj sæt
+          </v-btn>
+        </v-row>
       </div>
-    </v-row>
-    
-    <v-row justify="center">
-      <v-btn small color="#FFAE8A" @click="addSet" rounded class="white--text mb-3">
-        <v-icon>mdi-plus</v-icon>Tilføj sæt
-      </v-btn>
     </v-row>
   </v-card>
 </template>
 
 <script>
+import RepAndKg from "@/components/repsKgMin/RepAndKg.vue";
+
 export default {
   name: "MakeRoutineExerciseCard",
-  props: ["content"],
+  props: ["content", "i"],
+  components: {
+    RepAndKg
+  },
   data() {
     return {};
   },
   methods: {
-      addSet() {
-          
-      },
-      updateRep(rep) {
-        // console.log(rep);
-        
-        this.$store.commit("exercise/UPDATE_REP", rep);        
-      }
+    addSet() {}
   }
 };
 </script>
 
 <style lang="scss">
-    .center-text-input {
-        input {
-            text-align: center;
-        }
-    }
+.center-text-input {
+  input {
+    text-align: center;
+  }
+}
 </style>

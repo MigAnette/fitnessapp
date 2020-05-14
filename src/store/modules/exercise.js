@@ -8,7 +8,10 @@ export default {
   mutations: {
     // updating exercise test
     UPDATE_REP(state, payload) {
-      state.exerciseTest.repsAndKg.rep = payload;
+      state.exerciseTest[payload.i].repsAndKg[payload.index].rep = payload.value;
+    },
+    UPDATE_KG(state, payload) {
+      state.exerciseTest[payload.i].repsAndKg[payload.index].kg = payload.value;
     },
     UPDATE_EXERCISE(state, payload) {
       state.exerciseTest = payload;
