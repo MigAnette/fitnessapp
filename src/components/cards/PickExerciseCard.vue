@@ -24,7 +24,10 @@ export default {
   },
   methods: {
     sendData() {
-      const data = {
+      let data;
+      
+      if(this.content.repsAndSets) {
+        data = {
         image: this.content.image,
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
@@ -33,6 +36,15 @@ export default {
           {rep: 0, kg: 0}
         ]
       };
+      } else {
+        data = {
+        image: this.content.image,
+        name: this.content.name,
+        repsAndSets: this.content.repsAndSets,
+        description: this.content.description,
+        mins: 90
+      };
+      }
 
       this.$store.commit("exercise/SET_EXERCISE_TEST", data);
       this.$router.push({
