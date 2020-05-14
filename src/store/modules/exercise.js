@@ -8,15 +8,25 @@ export default {
   mutations: {
     // updating exercise test
     UPDATE_REP(state, payload) {
-      state.exerciseTest[payload.i].repsAndKg[payload.index].rep = payload.value;
+      state.exerciseTest[payload.i].repsAndKg[payload.index].rep =
+        payload.value;
     },
     UPDATE_KG(state, payload) {
       state.exerciseTest[payload.i].repsAndKg[payload.index].kg = payload.value;
+    },
+    UPDATE_MINS(state, payload) {
+      state.exerciseTest[payload.i].mins = payload.value;
     },
     UPDATE_EXERCISE(state, payload) {
       state.exerciseTest = payload;
     },
 
+    ADD_SET(state, payload) {
+      state.exerciseTest[payload.i].repsAndKg.push(payload.data);
+    },
+    REMOVE_SET(state, payload) {
+      state.exerciseTest[payload.i].repsAndKg.pop(payload.index, 1);
+    },
 
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {

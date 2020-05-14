@@ -42,7 +42,7 @@ export default {
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
         description: this.content.description,
-        mins: 90
+        mins: 0
       };
       }
 

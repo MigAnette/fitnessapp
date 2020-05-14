@@ -12,6 +12,7 @@
     </v-row>
     <v-divider></v-divider>
     <v-row>
+      <!-- |||||||||||||||||||||||||||||||||||||||||||||||||REPS AND KG||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
       <div v-if="content.repsAndSets">
         <v-row justify="center">
           <v-col cols="3" class="pb-0">
@@ -28,15 +29,20 @@
         <rep-and-kg
           v-for="(num, index) in content.repsAndKg"
           :key="index"
-          class="mx-3"
           :i="i"
           :index="index"
         ></rep-and-kg>
 
         <v-row justify="center">
-          <v-btn small color="#FFAE8A" @click="addSet" rounded class="white--text mb-3">
+          <v-btn small color="#FFAE8A" @click="addSet()" rounded class="white--text mb-3">
             <v-icon>mdi-plus</v-icon>Tilføj sæt
           </v-btn>
+        </v-row>
+      </div>
+      <!-- ||||||||||||||||||||||||||||||||||||||||||||||||| MINS ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+      <div v-if="!content.repsAndSets">
+        <v-row justify="center">
+          <mins-and-seconds :i="i"></mins-and-seconds>
         </v-row>
       </div>
     </v-row>
@@ -45,18 +51,27 @@
 
 <script>
 import RepAndKg from "@/components/repsKgMin/RepAndKg.vue";
+import MinsAndSeconds from "@/components/repsKgMin/MinsAndSeconds.vue";
 
 export default {
   name: "MakeRoutineExerciseCard",
   props: ["content", "i"],
   components: {
-    RepAndKg
+    RepAndKg,
+    MinsAndSeconds
   },
   data() {
     return {};
   },
   methods: {
-    addSet() {}
+    addSet() {
+      const data = {
+        rep: 0,
+        kg: 0
+      };
+      
+      this.$store.commit("exercise/ADD_SET", {data, i: this.i});
+    }
   }
 };
 </script>

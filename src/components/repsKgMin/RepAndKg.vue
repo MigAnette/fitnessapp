@@ -1,12 +1,12 @@
 <template>
   <v-row justify="center">
-    <v-col cols="3">
+    <v-col cols="2">
       <h4 class="text-color">{{index + 1}}.</h4>
     </v-col>
-    <v-col cols="4">
+    <v-col cols="3">
       <v-text-field dense class="corner center-text-input" outlined v-model.number="rep"></v-text-field>
     </v-col>
-    <v-col cols="4">
+    <v-col cols="3">
       <v-text-field
         dense
         class="corner center-text-input"
@@ -14,6 +14,11 @@
         outlined
         v-model.number="kg"
       ></v-text-field>
+    </v-col>
+    <v-col cols="1">
+      <v-btn outlined fab icon small @click="removeSet" color="red">
+        <v-icon>mdi-trash-can</v-icon>
+      </v-btn>
     </v-col>
   </v-row>
 </template>
@@ -24,6 +29,11 @@ export default {
   props: ["i", "index"],
   data() {
     return {};
+  },
+  methods: {
+    removeSet() {
+      this.$store.commit("exercise/REMOVE_SET", {index: this.index, i: this.i});
+    }
   },
   computed: {
     rep: {
