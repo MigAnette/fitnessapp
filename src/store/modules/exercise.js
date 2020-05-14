@@ -7,9 +7,13 @@ export default {
   },
   mutations: {
     // updating exercise test
+    UPDATE_REP(state, payload) {
+      state.exerciseTest.repsAndKg.rep = payload;
+    },
     UPDATE_EXERCISE(state, payload) {
       state.exerciseTest = payload;
     },
+
 
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {

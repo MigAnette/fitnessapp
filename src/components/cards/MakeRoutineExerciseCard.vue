@@ -30,10 +30,10 @@
             <h4 class="text-color">{{index + 1}}.</h4>
           </v-col>
           <v-col cols="4">
-            <v-text-field dense class="corner center-text-input" @keyup="$emit('update:content', content)" outlined v-model.number="num.rep"></v-text-field>
+            <v-text-field dense class="corner center-text-input" @change="updateRep(num.rep)" outlined :value="num.rep"></v-text-field>
           </v-col>
           <v-col cols="4">
-            <v-text-field dense class="corner center-text-input" @keyup="$emit('update:content', content)" suffix="Kg" outlined v-model.number="num.kg"></v-text-field>
+            <v-text-field dense class="corner center-text-input" @input="updateKg(num.kg)" suffix="Kg" outlined :value="num.kg"></v-text-field>
           </v-col>
         </v-row>
       </div>
@@ -57,6 +57,11 @@ export default {
   methods: {
       addSet() {
           
+      },
+      updateRep(rep) {
+        // console.log(rep);
+        
+        this.$store.commit("exercise/UPDATE_REP", rep);        
       }
   }
 };
