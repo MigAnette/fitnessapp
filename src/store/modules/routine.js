@@ -47,8 +47,14 @@ export default {
   },
   actions: {
     // --------- makeRoutine----------
-    createRoutine({ rootState }) {
+    createRoutine({ state, rootState }) {
       console.log(rootState.exercise.exerciseTest);
+      db.collection("routine").add({
+        author: rootState.user.currentUser,
+        description: state.routineDescription,
+        name: state.routineName,
+        exercises: rootState.exercise.exerciseTest
+      })
     },
     // --------- selectedRoutines----------
     fetchSelectedRoutines({ commit, state }) {
