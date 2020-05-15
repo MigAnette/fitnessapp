@@ -1,6 +1,6 @@
 <template>
   <div>
-    <make-routine-modal @goBack="goBack"></make-routine-modal>
+    <go-back-modal @goBack="goBack" :content="modalContent"></go-back-modal>
     <v-row justify="center">
       <h1>
         <span class="text-color">Lav</span> Rutine
@@ -38,7 +38,7 @@
 import NavigationButton from "@/components/buttons/NavigationButton.vue";
 import FunctionsButton from "@/components/buttons/FunctionsButton.vue";
 import MakeRoutineExerciseCard from "@/components/cards/MakeRoutineExerciseCard.vue";
-import MakeRoutineModal from "@/components/modals/MakeRoutineModal.vue";
+import GoBackModal from "@/components/modals/GoBackModal.vue";
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
 
 export default {
@@ -47,7 +47,7 @@ export default {
     NavigationButton,
     FunctionsButton,
     MakeRoutineExerciseCard,
-    MakeRoutineModal
+    GoBackModal
   },
   data() {
     return {
@@ -59,7 +59,12 @@ export default {
       duration: 300,
       offset: 0,
       easing: "easeInOutCubic",
-      easings: Object.keys(easings)
+      easings: Object.keys(easings),
+      modalContent: {
+        text1: "Er du sikker på du vil anullere?",
+        text2: "Din data",  
+        text3: "vil gå tabt"
+      }
     };
   },
   methods: {
@@ -89,7 +94,6 @@ export default {
           this.$vuetify.goTo(this.target, this.options);
         });
       }
-      console.log(this.selector);
     }
   },
   computed: {
@@ -137,5 +141,10 @@ export default {
   textarea {
     height: 90px;
   }
+  
 }
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
 </style>
