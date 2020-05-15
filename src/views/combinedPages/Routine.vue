@@ -1,63 +1,69 @@
 <template>
   <div>
     <back-button></back-button>
-    <div v-if="navName1">
-      this is kategorier pages from RoutineCategories
-      <navigation-button :routeName="routeName" buttonValue="Færdig" :routeParams="kategorierParams"></navigation-button>
-    </div>
 
-    <div v-for="(content, index) in routine.exercises" :key="index">
-      {{content.name}}
-    </div>
+    <v-row justify="center">
+      <h1>{{routine.name}}</h1>
+    </v-row>
+    <v-row justify="center" v-if="categoryRoutines">
+      <h4>{{routine.category}}</h4>
+    </v-row>
 
-    <div v-if="navName2">
-      this is minerutiner pages from MyRoutines
-      <navigation-button :routeName="routeName" buttonValue="Færdig" :routeParams="mineRutinerParams"></navigation-button>
-    </div>
+    <div v-for="(content, index) in routine.exercises" :key="index">{{content.name}}</div>
+
+    <div
+      v-if="categoryRoutines"
+      class="below-cards category-routines"
+    >this is kategorier pages from RoutineCategories</div>
+
+    <div v-if="myRoutines" class="below-cards my-routines">this is minerutiner pages from MyRoutines</div>
   </div>
 </template>
 
 <script>
-import NavigationButton from "@/components/buttons/NavigationButton.vue";
 import BackButton from "@/components/buttons/BackButton.vue";
 
 export default {
   name: "Routine",
   components: {
-    NavigationButton,
     BackButton
   },
   data() {
     return {
-      navName1: Boolean,
-      navName2: Boolean,
-      id: "hej",
-      routeName: "CompletedRoutine",
-      kategorierParams: {
-        nav_name: "kategorier",
-        routine_id: this.$route.params.routine_id
-      },
-      mineRutinerParams: {
-        nav_name: "minerutiner",
-        routine_id: this.$route.params.routine_id
-      }
+      categoryRoutines: Boolean,
+      myRoutines: Boolean,
+      id: "hej"
     };
+  },
+  methods: {
+    updateRoutineId() {
+      const id = this.$route.params.routine_id;
+      console.log(id);
+      
+      this.$store.commit("routine/SET_ROUTINE_ID", id);
+    },
+    categoryOrMine() {
+      if (this.$route.params.nav_name == "kategorier") {
+      this.categoryRoutines = true;
+      this.myRoutines = false;
+    } else if (this.$route.params.nav_name == "minerutiner") {
+      this.myRoutines = true;
+      this.categoryRoutines = false;
+    }
+    }
   },
   computed: {
     routine() {
-      return this.$store.getters['routine/routine'];
+      return this.$store.getters["routine/routine"];
     }
   },
   created() {
-    this.$store.dispatch('routine/fetchIndividualRoutine');
+    this.updateRoutineId();
+    this.categoryOrMine();
+  },
+  mounted() {
+    this.$store.dispatch("routine/fetchIndividualRoutine");
 
-    if (this.$route.params.nav_name == "kategorier") {
-      this.navName1 = true;
-      this.navName2 = false;
-    } else if (this.$route.params.nav_name == "minerutiner") {
-      this.navName2 = true;
-      this.navName1 = false;
-    }
   }
 };
 </script>
