@@ -19,20 +19,26 @@
 
 <script>
 export default {
-  name: 'EditRepAndKg',
-    props: ["i", "index", "content"],
+  name: "EditRepAndKg",
+  props: ["i", "index", "content"],
   data() {
-  return {
-      checkColor: "grey darken-1"
-  };
- },
- methods: {
-     checkExercise() {
-         console.log('checked');
-         
-         
-     }
- }
+    return {
+      checkColor: "",
+      booleanCheck: false
+    };
+  },
+  methods: {
+    checkExercise() {
+      if (this.booleanCheck) {
+        this.checkColor = "grey darken-1";
+        this.booleanCheck = false;
+      } else {
+        this.checkColor = "#FFAE8A";
+        this.booleanCheck = true;
+      }
+    }
+  },
+  
 };
 </script>
 
