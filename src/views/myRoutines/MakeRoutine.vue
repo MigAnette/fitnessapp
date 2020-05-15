@@ -1,8 +1,26 @@
 <template>
   <div>
     <back-button></back-button>
-    <p>MakeRoutine</p>
-    <make-routine-exercise-card v-for="(content, index) in exercise" :key="index" :i="index" :content="content"></make-routine-exercise-card>
+    <v-row justify="center">
+      <h1>
+        <span class="text-color">Lav</span> Rutine
+      </h1>
+    </v-row>
+    <v-container>
+      <v-row>
+        <v-text-field label="Navn på rutine" v-model="routineName"></v-text-field>
+      </v-row>
+      <v-row>
+        <v-textarea class="text-area-height" label="Beskrivelse" v-model="routineDescription"></v-textarea>
+      </v-row>
+    </v-container>
+
+    <make-routine-exercise-card
+      v-for="(content, index) in exercise"
+      :key="index"
+      :i="index"
+      :content="content"
+    ></make-routine-exercise-card>
 
     <!-- <p>{{exercise[0].repsAndKg}} </p> -->
     <navigation-button v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>
@@ -33,7 +51,7 @@ export default {
   },
   methods: {
     handleCreate() {
-       this.$store.dispatch('routine/createRoutine');
+      this.$store.dispatch("routine/createRoutine");
       // this.$router.push({ name: this.myRoutines });
     },
     limitExercises() {
@@ -44,8 +62,25 @@ export default {
   },
   computed: {
     exercise() {
-        return this.$store.getters['exercise/exerciseTest'];
+      return this.$store.getters["exercise/exerciseTest"];
+    },
+    routineName: {
+      get() {
+        return this.$store.state.routine.routineName;
+      },
+      set(value) {
+        this.$store.commit("routine/SET_ROUTINE_NAME", value);
+      }
+    },
+    routineDescription: {
+      get() {
+        return this.$store.state.routine.routineDescription;
+      },
+      set(value) {
+        this.$store.commit("routine/SET_ROUTINE_DESCRIPTION", value);
+      }
     }
+
   },
   created() {
     this.limitExercises();
@@ -53,5 +88,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+  .text-area-height {
+    textarea {
+      height: 90px;
+    }
+  }
 </style>

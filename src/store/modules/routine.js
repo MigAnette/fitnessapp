@@ -7,9 +7,19 @@ export default {
     myRoutines: [],
     routineId: "",
     routine: {},
+    routineName: "",
+    routineDescription: ""
   },
 
   mutations: {
+    // two way binding with routineName
+    SET_ROUTINE_NAME(state, payload) {
+      state.routineName = payload;
+    },
+    // two way binding with routineDescription
+    SET_ROUTINE_DESCRIPTION(state, payload) {
+      state.routineDescription = payload;
+    },
     // changning the id to get the individual routine
     SET_ROUTINE_ID(state, payload) {
       state.routineId = payload;
