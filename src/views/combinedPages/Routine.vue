@@ -1,5 +1,5 @@
 <template>
-<!-- Disclosure: pageName = myRoutines, !pageName = category -->
+  <!-- Disclosure: pageName = myRoutines, !pageName = category -->
   <div>
     <back-button></back-button>
 
@@ -7,10 +7,16 @@
       <h1>{{routine.name}}</h1>
     </v-row>
     <v-row justify="center" v-if="!pageName">
-      <h4>{{routine.category}}</h4>
+      <h4>{{routine.category | capitalize}}</h4>
     </v-row>
 
-    <exercise-card v-for="(content, index) in routine.exercises" :editRoutine="editRoutine" :i="index" :content="content" :key="index"></exercise-card>
+    <exercise-card
+      v-for="(content, index) in routine.exercises"
+      :editRoutine="editRoutine"
+      :i="index"
+      :content="content"
+      :key="index"
+    ></exercise-card>
 
     <div
       v-if="!pageName"
@@ -23,7 +29,7 @@
 
 <script>
 import BackButton from "@/components/buttons/BackButton.vue";
-import ExerciseCard from '@/components/cards/ExerciseCard.vue';
+import ExerciseCard from "@/components/cards/ExerciseCard.vue";
 
 export default {
   name: "Routine",
@@ -41,15 +47,15 @@ export default {
   methods: {
     updateRoutineId() {
       const id = this.$route.params.routine_id;
-      
+
       this.$store.commit("routine/SET_ROUTINE_ID", id);
     },
     categoryOrMine() {
       if (this.$route.params.nav_name == "kategorier") {
-      this.pageName = false;
-    } else if (this.$route.params.nav_name == "minerutiner") {
-      this.pageName = true;
-    }
+        this.pageName = false;
+      } else if (this.$route.params.nav_name == "minerutiner") {
+        this.pageName = true;
+      }
     }
   },
   computed: {
@@ -63,7 +69,13 @@ export default {
   mounted() {
     this.categoryOrMine();
     this.$store.dispatch("routine/fetchIndividualRoutine");
-
+  },
+  filters: {
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
   }
 };
 </script>

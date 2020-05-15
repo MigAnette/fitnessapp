@@ -10,7 +10,14 @@
       <v-text-field dense class="corner center-text-input" suffix="Kg" outlined :value="content.kg"></v-text-field>
     </v-col>
     <v-col cols="1">
-      <v-btn outlined fab icon small @click="checkExercise" :color="checkColor">
+      <v-btn
+        outlined
+        fab
+        icon
+        small
+        @click="checkExercise"
+        :class="{markChecked: booleanCheck == true, notChecked: booleanCheck == false}"
+      >
         <v-icon>mdi-check</v-icon>
       </v-btn>
     </v-col>
@@ -29,18 +36,25 @@ export default {
   },
   methods: {
     checkExercise() {
-      if (this.booleanCheck) {
-        this.checkColor = "grey darken-1";
-        this.booleanCheck = false;
-      } else {
-        this.checkColor = "#FFAE8A";
-        this.booleanCheck = true;
-      }
+      this.booleanCheck = !this.booleanCheck;
+
+    //   console.log(this.booleanCheck);
+
+     
+        this.$emit("checked", {check: this.booleanCheck, id: this.index});
+      
     }
   },
-  
+  created() {}
 };
 </script>
 
-<style>
+<style lang="scss">
+.markChecked {
+  color: #ffae8a !important;
+}
+
+.notChecked {
+  color: #757575 !important;
+}
 </style>

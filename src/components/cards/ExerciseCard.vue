@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-5 corner">
+  <v-card class="my-5 corner" :class="{borderCheck: borderChecked }">
     <v-row align="center" justify="center">
       <v-col cols="3" class="py-0">
         <v-avatar tile>
@@ -9,9 +9,7 @@
       <v-col cols="7">
         <v-card-title class="py-1 pl-0">{{content.name}}</v-card-title>
       </v-col>
-      <v-col cols="2">
-        
-      </v-col>
+      <v-col cols="2"></v-col>
     </v-row>
     <v-divider></v-divider>
     <v-row>
@@ -29,16 +27,21 @@
           </v-col>
         </v-row>
 
-        <rep-and-kg v-for="(num, index) in content.repsAndKg" :content="num" :key="index" :i="i" :index="index"></rep-and-kg>
+        <rep-and-kg
+          v-for="(num, index) in content.repsAndKg"
+          :content="num"
+          @checked="checkedReps"
+          :key="index"
+          :i="i"
+          :index="index"
+        ></rep-and-kg>
 
-        <v-row justify="center">
-      
-        </v-row>
+        <v-row justify="center"></v-row>
       </div>
       <!-- ||||||||||||||||||||||||||||||||||||||||||||||||| MINS ||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
       <div v-if="!content.repsAndSets">
         <v-row justify="center">
-          <mins-and-seconds :i="i" :content="content.mins"></mins-and-seconds>
+          <mins-and-seconds :i="i" :content="content.mins" @checked="checkedMins"></mins-and-seconds>
         </v-row>
       </div>
     </v-row>
@@ -57,18 +60,36 @@ export default {
     MinsAndSeconds
   },
   data() {
-    return {};
+    return {
+      amountChecked: [],
+      borderChecked: false
+    };
   },
   methods: {
-    removeExercise() {
-      console.log("removed");
+    checkedReps(value) {
+      if (value.check) {
+        this.amountChecked.push(value.id);
+      } else {
+        this.amountChecked.pop(++value.id, 1);
+      }
+
+      if (this.content.repsAndKg.length == this.amountChecked.length) {
+        this.borderChecked = true;
+      } else {
+        this.borderChecked = false;
+      }
     },
-    addSet() {
-      console.log("added");
+    checkedMins(value) {
+      this.borderChecked = value;
     }
-  }
+  },
+  created() {}
 };
 </script>
 
-<style>
+<style lang="scss">
+.borderCheck {
+  box-shadow: 0px 3px 1px -2px #ffae8a, 0px 2px 2px 0px #ffae8a,
+    0px 1px 5px 0px #ffae8a !important;
+}
 </style>
