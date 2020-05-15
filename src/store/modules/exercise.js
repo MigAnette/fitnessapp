@@ -28,6 +28,10 @@ export default {
       state.exerciseTest[payload.i].repsAndKg.pop(payload.index, 1);
     },
 
+    REMOVE_EXERCISE(state, payload) {
+      state.exerciseTest.pop(payload.i, 1);
+    },
+
     // testing exercise
     SET_EXERCISE_TEST(state, payload) {
       state.exerciseTest.push(payload);

@@ -1,13 +1,18 @@
 <template>
   <v-card class="my-5">
-    <v-row align="center">
+    <v-row align="center" justify="center">
       <v-col cols="3" class="py-0">
         <v-avatar tile>
           <v-img :src="content.image"></v-img>
         </v-avatar>
       </v-col>
-      <v-col cols="9" class="py-1">
-        <v-card-title>{{content.name}}</v-card-title>
+      <v-col cols="7">
+        <v-card-title class="py-1 pl-0">{{content.name}}</v-card-title>
+      </v-col>
+      <v-col cols="2">
+        <v-btn fab icon @click="removeExercise" color="red" small>
+          <v-icon class="icon-size">mdi-minus-circle</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <v-divider></v-divider>
@@ -26,12 +31,7 @@
           </v-col>
         </v-row>
 
-        <rep-and-kg
-          v-for="(num, index) in content.repsAndKg"
-          :key="index"
-          :i="i"
-          :index="index"
-        ></rep-and-kg>
+        <rep-and-kg v-for="(num, index) in content.repsAndKg" :key="index" :i="i" :index="index"></rep-and-kg>
 
         <v-row justify="center">
           <v-btn small color="#FFAE8A" @click="addSet()" rounded class="white--text mb-3">
@@ -69,8 +69,11 @@ export default {
         rep: 0,
         kg: 0
       };
-      
-      this.$store.commit("exercise/ADD_SET", {data, i: this.i});
+
+      this.$store.commit("exercise/ADD_SET", { data, i: this.i });
+    },
+    removeExercise() {
+      this.$store.commit("exercise/REMOVE_EXERCISE", { i: this.i });
     }
   }
 };
@@ -81,5 +84,8 @@ export default {
   input {
     text-align: center;
   }
+}
+.icon-size {
+  font-size: 36px !important;
 }
 </style>
