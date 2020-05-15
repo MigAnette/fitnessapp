@@ -6,6 +6,7 @@ export default {
     exerciseTest: [],
   },
   mutations: {
+    
     EMPTY_EXERCISE_TEST(state) {
       state.exerciseTest.length = 0;
     },

@@ -38,11 +38,11 @@ export default {
     checkExercise() {
       this.booleanCheck = !this.booleanCheck;
 
-    //   console.log(this.booleanCheck);
+      if (this.booleanCheck == true) {
+        this.$store.commit("routine/SET_MARK_CHECKED", true);
+      }
 
-     
-        this.$emit("checked", {check: this.booleanCheck, id: this.index});
-      
+      this.$emit("checked", { check: this.booleanCheck, id: this.index });
     }
   },
   created() {}

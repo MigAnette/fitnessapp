@@ -32,6 +32,9 @@ export default {
   methods: {
     checkExercise() {
       this.booleanCheck = !this.booleanCheck;
+      if (this.booleanCheck == true) {
+        this.$store.commit("routine/SET_MARK_CHECKED", true);
+      }
       this.$emit("checked", this.booleanCheck);
     }
   }

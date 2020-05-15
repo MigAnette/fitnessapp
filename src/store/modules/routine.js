@@ -8,10 +8,16 @@ export default {
     routineId: "",
     routine: {},
     routineName: "",
-    routineDescription: ""
+    routineDescription: "",
+    markChecked: false
   },
 
   mutations: {
+    // checking to see if a checkmark in an exercise has been marked
+    SET_MARK_CHECKED(state, payload) {
+      state.markChecked = payload;
+    },
+
     // emptying the routine data if user goes back
     EMPTY_ROUTINE(state) {
       state.routineDescription = "";
@@ -58,8 +64,8 @@ export default {
         author: rootState.user.currentUser,
         description: state.routineDescription,
         name: state.routineName,
-        exercises: rootState.exercise.exerciseTest
-      })
+        exercises: rootState.exercise.exerciseTest,
+      });
     },
     // --------- selectedRoutines----------
     fetchSelectedRoutines({ commit, state }) {
@@ -118,5 +124,8 @@ export default {
     routine(state) {
       return state.routine;
     },
+    markChecked(state) {
+      return state.markChecked;
+    }
   },
 };
