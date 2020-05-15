@@ -23,9 +23,13 @@
     ></make-routine-exercise-card>
 
     <v-row justify="center">
-
-    <navigation-button class="mr-3 my-8" v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>
-    <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
+      <navigation-button
+        class="mr-3 my-8"
+        v-if="limited"
+        :routeName="excersice"
+        buttonValue="Øvelser"
+      ></navigation-button>
+      <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
     </v-row>
   </div>
 </template>
@@ -35,6 +39,7 @@ import NavigationButton from "@/components/buttons/NavigationButton.vue";
 import FunctionsButton from "@/components/buttons/FunctionsButton.vue";
 import MakeRoutineExerciseCard from "@/components/cards/MakeRoutineExerciseCard.vue";
 import MakeRoutineModal from "@/components/modals/MakeRoutineModal.vue";
+import * as easings from "vuetify/es5/services/goto/easing-patterns";
 
 export default {
   name: "MakeRoutine",
@@ -49,6 +54,12 @@ export default {
       excersice: "PickExercise",
       myRoutines: "MyRoutines",
       limited: true,
+      number: 9999,
+      selector: "",
+      duration: 300,
+      offset: 0,
+      easing: "easeInOutCubic",
+      easings: Object.keys(easings)
     };
   },
   methods: {
@@ -62,14 +73,37 @@ export default {
       }
     },
     goBack() {
-      console.log('nice');
+      console.log("nice");
       this.$store.commit("routine/EMPTY_ROUTINE");
       this.$store.commit("exercise/EMPTY_EXERCISE_TEST");
       this.$router.push({ name: this.myRoutines });
-      
+    },
+    getLastElement() {
+      const my_array = this.exercise;
+      const lastElement = my_array.length - 1;
+      if (lastElement == -1) {
+        this.selector = "empty";
+      } else {
+        this.selector = "#t" + lastElement.toString();
+        this.$nextTick(() => {
+          this.$vuetify.goTo(this.target, this.options);
+        });
+      }
+      console.log(this.selector);
     }
   },
   computed: {
+    target() {
+      const value = this.selector;
+      return value;
+    },
+    options() {
+      return {
+        duration: this.duration,
+        offset: this.offset,
+        easing: this.easing
+      };
+    },
     exercise() {
       return this.$store.getters["exercise/exerciseTest"];
     },
@@ -92,6 +126,8 @@ export default {
   },
   created() {
     this.limitExercises();
+
+    this.getLastElement();
   }
 };
 </script>
