@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "RepAndKg",
+  name: "MakeRepAndKg",
   props: ["i", "index"],
   data() {
     return {
