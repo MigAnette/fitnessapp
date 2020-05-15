@@ -6,6 +6,9 @@ export default {
     exerciseTest: [],
   },
   mutations: {
+    EMPTY_EXERCISE_TEST(state) {
+      state.exerciseTest.length = 0;
+    },
     // updating exercise test
     UPDATE_REP(state, payload) {
       state.exerciseTest[payload.i].repsAndKg[payload.index].rep =
@@ -20,7 +23,6 @@ export default {
     UPDATE_EXERCISE(state, payload) {
       state.exerciseTest = payload;
     },
-
     ADD_SET(state, payload) {
       state.exerciseTest[payload.i].repsAndKg.push(payload.data);
     },

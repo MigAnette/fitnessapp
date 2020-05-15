@@ -1,6 +1,6 @@
 <template>
   <div>
-    <back-button></back-button>
+    <make-routine-modal @goBack="goBack"></make-routine-modal>
     <v-row justify="center">
       <h1>
         <span class="text-color">Lav</span> Rutine
@@ -22,9 +22,11 @@
       :content="content"
     ></make-routine-exercise-card>
 
-    <!-- <p>{{exercise[0].repsAndKg}} </p> -->
-    <navigation-button v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>
-    <functions-button buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
+    <v-row justify="center">
+
+    <navigation-button class="mr-3 my-8" v-if="limited" :routeName="excersice" buttonValue="Øvelser"></navigation-button>
+    <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
+    </v-row>
   </div>
 </template>
 
@@ -32,21 +34,21 @@
 import NavigationButton from "@/components/buttons/NavigationButton.vue";
 import FunctionsButton from "@/components/buttons/FunctionsButton.vue";
 import MakeRoutineExerciseCard from "@/components/cards/MakeRoutineExerciseCard.vue";
-import BackButton from "@/components/buttons/BackButton.vue";
+import MakeRoutineModal from "@/components/modals/MakeRoutineModal.vue";
 
 export default {
   name: "MakeRoutine",
   components: {
     NavigationButton,
     FunctionsButton,
-    BackButton,
-    MakeRoutineExerciseCard
+    MakeRoutineExerciseCard,
+    MakeRoutineModal
   },
   data() {
     return {
       excersice: "PickExercise",
       myRoutines: "MyRoutines",
-      limited: true
+      limited: true,
     };
   },
   methods: {
@@ -58,6 +60,13 @@ export default {
       if (this.exercise.length >= 5) {
         this.limited = false;
       }
+    },
+    goBack() {
+      console.log('nice');
+      this.$store.commit("routine/EMPTY_ROUTINE");
+      this.$store.commit("exercise/EMPTY_EXERCISE_TEST");
+      this.$router.push({ name: this.myRoutines });
+      
     }
   },
   computed: {
@@ -80,7 +89,6 @@ export default {
         this.$store.commit("routine/SET_ROUTINE_DESCRIPTION", value);
       }
     }
-
   },
   created() {
     this.limitExercises();
@@ -89,9 +97,9 @@ export default {
 </script>
 
 <style lang="scss">
-  .text-area-height {
-    textarea {
-      height: 90px;
-    }
+.text-area-height {
+  textarea {
+    height: 90px;
   }
+}
 </style>

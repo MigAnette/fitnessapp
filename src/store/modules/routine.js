@@ -12,6 +12,11 @@ export default {
   },
 
   mutations: {
+    // emptying the routine data if user goes back
+    EMPTY_ROUTINE(state) {
+      state.routineDescription = "";
+      state.routineName = "";
+    },
     // two way binding with routineName
     SET_ROUTINE_NAME(state, payload) {
       state.routineName = payload;
