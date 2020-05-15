@@ -30,11 +30,11 @@ export default {
   },
   computed: {
     selectedRoutines() {
-      return this.$store.getters.selectedRoutines;
+      return this.$store.getters['routine/selectedRoutines'];
     }
   },
   created() {
-    this.$store.dispatch("fetchSelectedRoutines");
+    this.$store.dispatch("routine/fetchSelectedRoutines");
   }
 };
 </script>

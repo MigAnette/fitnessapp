@@ -24,14 +24,29 @@ export default {
   },
   methods: {
     sendData() {
-      const data = {
+      let data;
+      
+      if(this.content.repsAndSets) {
+        data = {
         image: this.content.image,
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
-        description: this.content.description
+        description: this.content.description,
+        repsAndKg: [
+          {rep: 0, kg: 0}
+        ]
       };
+      } else {
+        data = {
+        image: this.content.image,
+        name: this.content.name,
+        repsAndSets: this.content.repsAndSets,
+        description: this.content.description,
+        mins: 0
+      };
+      }
 
-      this.$store.commit("SET_EXERCISE_TEST", data);
+      this.$store.commit("exercise/SET_EXERCISE_TEST", data);
       this.$router.push({
         name: this.routeName
       });

@@ -45,11 +45,11 @@ export default {
   },
   computed: {
     routine() {
-      return this.$store.getters.routine;
+      return this.$store.getters['routine/routine'];
     }
   },
   created() {
-    this.$store.dispatch('fetchIndividualRoutine');
+    this.$store.dispatch('routine/fetchIndividualRoutine');
 
     if (this.$route.params.nav_name == "kategorier") {
       this.navName1 = true;

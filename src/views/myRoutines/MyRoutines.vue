@@ -29,11 +29,11 @@ export default {
  },
  computed: {
    myRoutines() {
-     return this.$store.getters.myRoutines;
+     return this.$store.getters['routine/myRoutines'];
    }
  },
  created() {
-   this.$store.dispatch("fetchMyRoutines");
+   this.$store.dispatch("routine/fetchMyRoutines");
  }
 };
 </script>

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     navigate(name) {
-      this.$store.commit("SET_CATEGORY_NAME", name);
+      this.$store.commit("routine/SET_CATEGORY_NAME", name);
       this.$router.push({
         name: "SelectedCategory",
         params: { category_name: name }

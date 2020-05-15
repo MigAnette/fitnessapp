@@ -26,11 +26,11 @@ export default {
  },
  computed: {
    user() {
-     return this.$store.getters.user;
+     return this.$store.getters['user/user'];
    }
  },
  created() {
-   this.$store.dispatch("fetchUser");
+   this.$store.dispatch("user/fetchUser");
  }
 };
 </script>
