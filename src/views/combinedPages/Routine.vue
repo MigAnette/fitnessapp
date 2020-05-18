@@ -4,19 +4,7 @@
     <back-button v-if="!markChecked"></back-button>
     <go-back-modal v-if="markChecked" @goBack="goBack" :content="modalContent"></go-back-modal>
 
-    <v-btn
-      v-if="pageName"
-      @click="deleteRoutine"
-      right
-      absolute
-      small
-      :disabled="markChecked"
-      icon
-      circle
-      fab
-    >
-      <v-icon>mdi-trash-can</v-icon>
-    </v-btn>
+    <delete-modal :markChecked="markChecked" @deleteRoutine="deleteRoutine" :content="deleteModalContent" :pageName="pageName"></delete-modal>
 
     <v-row justify="center">
       <h1>{{routine.name}}</h1>
@@ -47,6 +35,7 @@
 import BackButton from "@/components/buttons/BackButton.vue";
 import ExerciseCard from "@/components/cards/ExerciseCard.vue";
 import GoBackModal from "@/components/modals/GoBackModal.vue";
+import DeleteModal from "@/components/modals/DeleteModal.vue";
 import CompletedRoutineModal from "@/components/modals/CompletedRoutineModal.vue";
 
 export default {
@@ -55,6 +44,7 @@ export default {
     BackButton,
     ExerciseCard,
     GoBackModal,
+    DeleteModal,
     CompletedRoutineModal
   },
   data() {
@@ -66,6 +56,11 @@ export default {
         text1: "Er du sikker på du vil anullere?",
         text2: "Din data",
         text3: "vil gå tabt"
+      },
+      deleteModalContent: {
+        text1: "Er du sikker på du vil slette?",
+        text2: "Din rutine",
+        text3: "vil blive slettet"
       }
     };
   },
