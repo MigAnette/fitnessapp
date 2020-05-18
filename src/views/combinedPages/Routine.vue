@@ -68,8 +68,9 @@ export default {
       if (this.pageName == true) {
         this.$router.push({ name: "MyRoutines" });
       } else {
-        this.$router.push({ name: "RoutineCategories" });
+        this.$router.go(-1);
       }
+        this.$store.commit("routine/SET_MARK_CHECKED", false);
     }
   },
   computed: {
