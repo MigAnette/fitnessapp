@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <go-back-modal @goBack="goBack" :content="modalContent"></go-back-modal>
     <v-row justify="center">
       <h1>
@@ -31,7 +31,7 @@
       ></navigation-button>
       <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>

@@ -1,20 +1,15 @@
 <template>
   <div>
-      <v-container>
-          <slot></slot>
-      </v-container>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-
-
 export default {
-  name: 'NoNavbar',
+  name: "NoNavbar",
   data() {
-  return {
-  };
- },
+    return {};
+  }
 };
 </script>
 

@@ -1,10 +1,20 @@
 <template>
   <!-- Disclosure: pageName = myRoutines, !pageName = category -->
-  <div>
+  <v-container>
     <back-button v-if="!markChecked"></back-button>
     <go-back-modal v-if="markChecked" @goBack="goBack" :content="modalContent"></go-back-modal>
 
-    <v-btn v-if="pageName" @click="deleteRoutine" right absolute small :disabled="markChecked" icon circle fab>
+    <v-btn
+      v-if="pageName"
+      @click="deleteRoutine"
+      right
+      absolute
+      small
+      :disabled="markChecked"
+      icon
+      circle
+      fab
+    >
       <v-icon>mdi-trash-can</v-icon>
     </v-btn>
 
@@ -30,7 +40,7 @@
         :content="routine"
       ></completed-routine-modal>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -62,9 +72,8 @@ export default {
   methods: {
     deleteRoutine() {
       this.$store.dispatch("routine/deleteRoutine");
-      this.$router.push({name: 'MyRoutines'});
+      this.$router.push({ name: "MyRoutines" });
       console.log(this.routine.id);
-      
     },
     updateRoutineId() {
       const id = this.$route.params.routine_id;
