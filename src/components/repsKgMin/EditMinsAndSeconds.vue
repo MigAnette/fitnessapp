@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-col cols="3">Mins:</v-col>
     <v-col cols="6">
-      <v-text-field dense class="corner center-text-input" outlined :value="content"></v-text-field>
+      <v-text-field dense class="corner center-text-input" outlined v-model.number="mins"></v-text-field>
     </v-col>
     <v-col cols="1">
       <v-btn
@@ -36,6 +36,19 @@ export default {
         this.$store.commit("routine/SET_MARK_CHECKED", true);
       }
       this.$emit("checked", this.booleanCheck);
+    }
+  },
+  computed: {
+    mins: {
+      get() {
+        return this.$store.state.routine.routine.exercises[this.i].mins;
+      },
+      set(value) {
+        this.$store.commit("routine/EDIT_MINS", {
+          value,
+          i: this.i
+        });
+      }
     }
   }
 };

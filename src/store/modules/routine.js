@@ -1,4 +1,5 @@
 import db from "@/firebase/init";
+import firebase from "firebase/app";
 export default {
   namespaced: true,
   state: {
@@ -9,10 +10,23 @@ export default {
     routine: {},
     routineName: "",
     routineDescription: "",
-    markChecked: false
+    markChecked: false,
   },
 
   mutations: {
+    EDIT_REP(state, payload) {
+      state.routine.exercises[payload.i].repsAndKg[payload.index].rep =
+        payload.value;
+    },
+
+    EDIT_KG(state, payload) {
+      state.routine.exercises[payload.i].repsAndKg[payload.index].kg = payload.value;
+    },
+
+    EDIT_MINS(state, payload) {
+      state.routine.exercises[payload.i].mins = payload.value;
+    },
+
     // checking to see if a checkmark in an exercise has been marked
     SET_MARK_CHECKED(state, payload) {
       state.markChecked = payload;
@@ -57,6 +71,15 @@ export default {
     },
   },
   actions: {
+    saveDoneRoutine({ state, rootState }) {
+      const now = new Date();
+      console.log(state.routine);
+      db.collection("users").doc(rootState.user.currentUser).collection("history").add({
+        ...state.routine,
+        created_at: firebase.firestore.Timestamp.fromDate(now)
+      });
+    },
+
     // --------- makeRoutine----------
     createRoutine({ state, rootState }) {
       console.log(rootState.exercise.exerciseTest);
@@ -126,6 +149,9 @@ export default {
     },
     markChecked(state) {
       return state.markChecked;
-    }
+    },
+    exerciseSize(state) {
+      return state.routine.exercises.length;
+    },
   },
 };

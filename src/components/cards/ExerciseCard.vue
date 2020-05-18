@@ -78,9 +78,20 @@ export default {
       } else {
         this.borderChecked = false;
       }
+
+      if(this.borderChecked) {
+        this.$store.commit("exercise/EXERCISE_DONE", this.i)
+      } else {
+        this.$store.commit("exercise/EXERCISE_NOT_DONE", this.i)
+      }
     },
     checkedMins(value) {
       this.borderChecked = value;
+      if(this.borderChecked) {
+        this.$store.commit("exercise/EXERCISE_DONE", this.i)
+      } else {
+        this.$store.commit("exercise/EXERCISE_NOT_DONE", this.i)
+      }
     }
   },
   created() {}

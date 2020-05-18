@@ -20,7 +20,11 @@
     ></exercise-card>
 
     <v-row justify="center">
-      <completed-routine-modal :pageName="pageName" :content="routine"></completed-routine-modal>
+      <completed-routine-modal
+        :exercisesMarked="disabledButton"
+        :pageName="pageName"
+        :content="routine"
+      ></completed-routine-modal>
     </v-row>
   </div>
 </template>
@@ -70,23 +74,43 @@ export default {
       } else {
         this.$router.go(-1);
       }
-        this.$store.commit("routine/SET_MARK_CHECKED", false);
+      this.$store.commit("routine/SET_MARK_CHECKED", false);
+      this.$store.commit("exercise/EMPTY_EXERCISE_DONE");
     }
   },
   computed: {
     routine() {
       return this.$store.getters["routine/routine"];
     },
+    exerciseSize() {
+      return this.$store.getters["routine/exerciseSize"];
+    },
     markChecked() {
       return this.$store.getters["routine/markChecked"];
+    },
+    exerciseDone() {
+      return this.$store.getters["exercise/exerciseDone"];
+    },
+    disabledButton() {
+      if (this.exerciseDone.length == this.exerciseSize) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   created() {
     this.updateRoutineId();
+    console.log("created");
+
+    this.$store.dispatch("routine/fetchIndividualRoutine");
+    this.categoryOrMine();
+  },
+  beforeMount() {
+    console.log("beforeMount");
   },
   mounted() {
-    this.categoryOrMine();
-    this.$store.dispatch("routine/fetchIndividualRoutine");
+    console.log("mounted");
   },
   filters: {
     capitalize: function(value) {

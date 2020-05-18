@@ -70,7 +70,7 @@ export default {
   methods: {
     handleCreate() {
       this.$store.dispatch("routine/createRoutine");
-      // this.$router.push({ name: this.myRoutines });
+      this.$router.push({ name: this.myRoutines });
     },
     limitExercises() {
       if (this.exercise.length >= 5) {

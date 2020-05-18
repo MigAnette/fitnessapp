@@ -4,10 +4,10 @@
       <h4 class="text-color">{{index + 1}}.</h4>
     </v-col>
     <v-col cols="3">
-      <v-text-field dense class="corner center-text-input" outlined :value="content.rep"></v-text-field>
+      <v-text-field dense class="corner center-text-input" outlined v-model.number="rep"></v-text-field>
     </v-col>
     <v-col cols="3">
-      <v-text-field dense class="corner center-text-input" suffix="Kg" outlined :value="content.kg"></v-text-field>
+      <v-text-field dense class="corner center-text-input" suffix="Kg" outlined v-model.number="kg"></v-text-field>
     </v-col>
     <v-col cols="1">
       <v-btn
@@ -45,7 +45,36 @@ export default {
       this.$emit("checked", { check: this.booleanCheck, id: this.index });
     }
   },
-  created() {}
+  computed: {
+    rep: {
+      get() {
+        return this.$store.state.routine.routine.exercises[this.i].repsAndKg[
+          this.index
+        ].rep;
+      },
+      set(value) {
+        this.$store.commit("routine/EDIT_REP", {
+          value,
+          index: this.index,
+          i: this.i
+        });
+      }
+    },
+    kg: {
+      get() {
+        return this.$store.state.routine.routine.exercises[this.i].repsAndKg[
+          this.index
+        ].kg;
+      },
+      set(value) {
+        this.$store.commit("routine/EDIT_KG", {
+          value,
+          index: this.index,
+          i: this.i
+        });
+      }
+    }
+  }
 };
 </script>
 

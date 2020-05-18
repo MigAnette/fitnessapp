@@ -1,7 +1,14 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="500">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on" color="#FFAE8A" rounded class="white--text">Færdig</v-btn>
+      <v-btn
+        v-on="on"
+        color="#FFAE8A"
+        :disabled="exercisesMarked"
+        @click="saveDoneRoutine"
+        rounded
+        class="white--text"
+      >Færdig</v-btn>
     </template>
 
     <v-card class="corner pa-4 py-9">
@@ -54,7 +61,7 @@
             color="#3D3D3D"
             rounded
             class="white--text"
-            :to="{name: historyName, params: historyParams}"
+            :to="{name: historyName}"
           >Historik</v-btn>
         </v-col>
       </v-row>
@@ -67,7 +74,7 @@ import NavigationButton from "@/components/buttons/NavigationButton.vue";
 
 export default {
   name: "CompletedRoutineModal",
-  props: ["content", "pageName"],
+  props: ["content", "pageName", "exercisesMarked"],
   components: {
     NavigationButton
   },
@@ -75,14 +82,16 @@ export default {
     return {
       dialog: false,
       exercises: 0,
-      historyName: "SingleHistory",
-      historyParams: { history_id: this.content.id }
+      historyName: "History",
     };
   },
   methods: {
     exerciseAmount() {
       const amount = this.content.exercises.length;
       this.exercises = amount;
+    },
+    saveDoneRoutine() {
+      this.$store.dispatch("routine/saveDoneRoutine");
     }
   },
   computed: {
@@ -94,7 +103,7 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     this.exerciseAmount();
   },
   updated() {

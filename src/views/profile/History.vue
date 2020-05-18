@@ -1,18 +1,17 @@
 <template>
   <div>
-    <back-button></back-button>
+     <v-btn small color="grey lighten-3" :to="{name: 'Profile'}" circle outlined fab>
+      <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+  </v-btn>
       <v-btn v-for="content in history" :key="content.id" @click="navigation(content.id)">{{content.name}} </v-btn>
   </div>
 </template>
 
 <script>
-import BackButton from "@/components/buttons/BackButton.vue";
 
 export default {
   name: 'History',
-  components: {
-    BackButton
-  },
+
   data() {
   return {
   };
