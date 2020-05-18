@@ -4,6 +4,10 @@
     <back-button v-if="!markChecked"></back-button>
     <go-back-modal v-if="markChecked" @goBack="goBack" :content="modalContent"></go-back-modal>
 
+    <v-btn v-if="pageName" @click="deleteRoutine" right absolute small :disabled="markChecked" icon circle fab>
+      <v-icon>mdi-trash-can</v-icon>
+    </v-btn>
+
     <v-row justify="center">
       <h1>{{routine.name}}</h1>
     </v-row>
@@ -56,6 +60,12 @@ export default {
     };
   },
   methods: {
+    deleteRoutine() {
+      this.$store.dispatch("routine/deleteRoutine");
+      this.$router.push({name: 'MyRoutines'});
+      console.log(this.routine.id);
+      
+    },
     updateRoutineId() {
       const id = this.$route.params.routine_id;
 
@@ -103,13 +113,13 @@ export default {
     this.updateRoutineId();
     console.log("created");
 
-    this.$store.dispatch("routine/fetchIndividualRoutine");
     this.categoryOrMine();
   },
   beforeMount() {
     console.log("beforeMount");
   },
   mounted() {
+    this.$store.dispatch("routine/fetchIndividualRoutine");
     console.log("mounted");
   },
   filters: {

@@ -71,6 +71,12 @@ export default {
     },
   },
   actions: {
+    // --------- Routine----------
+    deleteRoutine({ state }) {
+      console.log(state.routineId);
+      db.collection("routine").doc(state.routineId).delete();
+      
+    },
     saveDoneRoutine({ state, rootState }) {
       const now = new Date();
       console.log(state.routine);
