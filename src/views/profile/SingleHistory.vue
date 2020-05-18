@@ -1,36 +1,30 @@
 <template>
   <div>
-    <back-button></back-button>
+    <v-btn small color="grey lighten-3" :to="{name: 'History'}" circle outlined fab>
+      <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+    </v-btn>
 
-    <div>{{singleHistory.name}} </div>
+    <div>{{singleHistory.name}}</div>
 
-    <div v-for="(content, index) in singleHistory.exercises" :key="index">
-      {{content.name}}
-    </div>
-
+    <div v-for="(content, index) in singleHistory.exercises" :key="index">{{content.name}}</div>
   </div>
 </template>
 
 <script>
-import BackButton from "@/components/buttons/BackButton.vue";
-
 export default {
-  name: 'SingleHistory',
-  components: {
-    BackButton
-  },
+  name: "SingleHistory",
+
   data() {
-  return {
-  };
- },
- computed: {
-   singleHistory() {
-     return this.$store.getters['user/singleHistory'];
-   }
- },
- created() {
-   this.$store.dispatch("user/fetchSingleHistory");
- }
+    return {};
+  },
+  computed: {
+    singleHistory() {
+      return this.$store.getters["user/singleHistory"];
+    }
+  },
+  created() {
+    this.$store.dispatch("user/fetchSingleHistory");
+  }
 };
 </script>
 

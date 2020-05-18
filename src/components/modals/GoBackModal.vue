@@ -13,7 +13,7 @@
       <v-card-text>
         <p class="text-center">
           {{content.text2}}
-          <v-span class="color-red">{{content.text3}}</v-span>
+          <span class="color-red">{{content.text3}}</span>
         </p>
       </v-card-text>
       <v-row justify="center">

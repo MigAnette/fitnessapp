@@ -7,15 +7,11 @@ import FrontPage from "@/views/FrontPage.vue";
 // components from routine categories
 import RoutineCategories from "@/views/routineCategories/RoutineCategories.vue";
 import SelectedCategory from "@/views/routineCategories/SelectedCategory.vue";
-import PreRoutine from "@/views/routineCategories/PreRoutine.vue";
-import PreCompletedRoutine from "@/views/routineCategories/PreCompletedRoutine.vue";
 
 // components from my routines
 import MyRoutines from "@/views/myRoutines/MyRoutines.vue";
 import MakeRoutine from "@/views/myRoutines/MakeRoutine.vue";
 import PickExercise from "@/views/myRoutines/PickExercise.vue";
-import MyRoutine from "@/views/myRoutines/MyRoutine.vue";
-import MyCompletedRoutine from "@/views/myRoutines/MyCompletedRoutine.vue";
 
 // components from profile
 import Profile from "@/views/profile/Profile.vue";
@@ -23,7 +19,6 @@ import History from "@/views/profile/History.vue";
 import SingleHistory from "@/views/profile/SingleHistory.vue";
 
 // components from combined pages
-import CompletedRoutine from "@/views/combinedPages/CompletedRoutine.vue";
 import Routine from "@/views/combinedPages/Routine.vue";
 
 Vue.use(VueRouter);
@@ -41,41 +36,26 @@ const routes = [
     name: "Routine",
     component: Routine,
   },
-  {
-    path: "/:nav_name/rutine/:routine_id/completed",
-    name: "CompletedRoutine",
-    component: CompletedRoutine,
-  },
 
   // Routes for Routine categories
   {
     path: "/kategorier",
     name: "RoutineCategories",
-    meta: {layout: "nav-bar"},
+    meta: { layout: "nav-bar" },
     component: RoutineCategories,
   },
   {
     path: "/kategorier/:category_name",
     name: "SelectedCategory",
-    meta: {layout: "nav-bar"}, 
+    meta: { layout: "nav-bar" },
     component: SelectedCategory,
-  },
-  {
-    path: "/kategorier/:category_name/:routine_id",
-    name: "PreRoutine",
-    component: PreRoutine,
-  },
-  {
-    path: "/kategorier/:category_name/:routine_id/completed",
-    name: "PreCompletedRoutine",
-    component: PreCompletedRoutine,
   },
 
   // Routes for My Routine
   {
     path: "/minerutiner",
     name: "MyRoutines",
-    meta: {layout: "nav-bar"},
+    meta: { layout: "nav-bar" },
     component: MyRoutines,
   },
   {
@@ -88,28 +68,18 @@ const routes = [
     name: "PickExercise",
     component: PickExercise,
   },
-  {
-    path: "/minerutiner/:routine_id",
-    name: "MyRoutine",
-    component: MyRoutine,
-  },
-  {
-    path: "/minerutiner/:routine_id/completed",
-    name: "MyCompletedRoutine",
-    component: MyCompletedRoutine,
-  },
 
   // Routines for Profile
   {
     path: "/profil",
     name: "Profile",
-    meta: {layout: "nav-bar"},
+    meta: { layout: "nav-bar" },
     component: Profile,
   },
   {
     path: "/profil/historie",
     name: "History",
-    meta: {layout: "nav-bar"},
+    meta: { layout: "nav-bar" },
     component: History,
   },
   {

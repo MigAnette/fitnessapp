@@ -25,9 +25,9 @@
     <v-row justify="center">
       <navigation-button
         class="mr-3 my-8"
-        v-if="limited"
         :routeName="excersice"
         buttonValue="Øvelser"
+        :working="limited"
       ></navigation-button>
       <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
     </v-row>
@@ -53,7 +53,7 @@ export default {
     return {
       excersice: "PickExercise",
       myRoutines: "MyRoutines",
-      limited: true,
+      limited: false,
       number: 9999,
       selector: "",
       duration: 300,
@@ -70,11 +70,11 @@ export default {
   methods: {
     handleCreate() {
       this.$store.dispatch("routine/createRoutine");
-      // this.$router.push({ name: this.myRoutines });
+      this.$router.push({ name: this.myRoutines });
     },
     limitExercises() {
       if (this.exercise.length >= 5) {
-        this.limited = false;
+        this.limited = true;
       }
     },
     goBack() {

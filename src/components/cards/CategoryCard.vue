@@ -42,4 +42,5 @@ export default {
 .corner {
   border-radius: 16px !important;
 }
+
 </style>

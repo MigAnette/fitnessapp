@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-5" :id="'t'+i">
+  <v-card class="my-5 corner" :id="'t'+i">
     <v-row align="center" justify="center">
       <v-col cols="3" class="py-0">
         <v-avatar tile>
@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import RepAndKg from "@/components/repsKgMin/RepAndKg.vue";
-import MinsAndSeconds from "@/components/repsKgMin/MinsAndSeconds.vue";
+import RepAndKg from "@/components/repsKgMin/MakeRepAndKg.vue";
+import MinsAndSeconds from "@/components/repsKgMin/MakeMinsAndSeconds.vue";
 
 export default {
   name: "MakeRoutineExerciseCard",

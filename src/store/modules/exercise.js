@@ -4,8 +4,20 @@ export default {
   state: {
     pickExercises: [],
     exerciseTest: [],
+    exerciseDone: []
   },
   mutations: {
+    EMPTY_EXERCISE_DONE(state) {
+      state.exerciseDone.length = 0
+    },
+    // if exercise is done the index will be added to an array
+    EXERCISE_DONE(state, payload) {
+      state.exerciseDone.push(payload);
+    },
+    EXERCISE_NOT_DONE(state, payload) {
+      state.exerciseDone.splice(payload, 1);
+    },
+    // when leaving make routine before being finished:
     EMPTY_EXERCISE_TEST(state) {
       state.exerciseTest.length = 0;
     },
@@ -67,5 +79,8 @@ export default {
     exerciseTest(state) {
       return state.exerciseTest;
     },
+    exerciseDone(state) {
+      return state.exerciseDone;
+    }
   },
 };

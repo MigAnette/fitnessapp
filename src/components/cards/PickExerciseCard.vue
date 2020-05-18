@@ -31,7 +31,6 @@ export default {
         image: this.content.image,
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
-        description: this.content.description,
         repsAndKg: [
           {rep: 0, kg: 0}
         ]
@@ -41,7 +40,6 @@ export default {
         image: this.content.image,
         name: this.content.name,
         repsAndSets: this.content.repsAndSets,
-        description: this.content.description,
         mins: 0
       };
       }

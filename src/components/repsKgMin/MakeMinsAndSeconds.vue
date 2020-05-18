@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'min',
+  name: 'MakeMinsAndSeconds',
   props: ["i"],
   data() {
   return {
