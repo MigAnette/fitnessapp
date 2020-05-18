@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <v-container>
     <back-button></back-button>
     <v-row justify="center">
       <h1><span class="text-color">Vælg</span> Øvelse</h1>
     </v-row>
     <pick-exercise-card v-for="content in pickExercises" :key="content.id" :content="content"></pick-exercise-card>
-  </div>
+  </v-container>
 </template>
 
 <script>

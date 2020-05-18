@@ -17,7 +17,14 @@ export default {
   computed: {
     layout() {
       return (this.$route.meta.layout || default_layout) + '-layout';
-    }
+    },
+  },
+  methods: {
+   
+  },
+  created() {
+    this.$store.dispatch("user/setUser");
+    
   }
 };
 </script>

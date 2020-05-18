@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-btn small color="grey lighten-3" :to="{name: 'History'}" circle outlined fab>
       <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
     </v-btn>
@@ -7,7 +7,7 @@
     <div>{{singleHistory.name}}</div>
 
     <div v-for="(content, index) in singleHistory.exercises" :key="index">{{content.name}}</div>
-  </div>
+  </v-container>
 </template>
 
 <script>

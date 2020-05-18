@@ -1,4 +1,8 @@
 import db from "@/firebase/init";
+import firebase from "firebase/app";
+require("firebase/auth");
+import router from "@/router";
+
 export default {
   namespaced: true,
   state: {
@@ -6,9 +10,19 @@ export default {
     history: [],
     historyId: "",
     singleHistory: {},
-    currentUser: "ca9SpNZEzoQ79hBHipCn",
+    currentUser: "",
+    feedback: "",
   },
   mutations: {
+
+    SET_USER_ID(state) {
+      state.currentUser = firebase.auth().currentUser.uid;
+    },
+
+    SET_FEEDBACK(state, payload) {
+      state.feedback = payload;
+    },
+
     // --------- user ----------
     SET_USER(state, payload) {
       state.user = payload;
@@ -29,6 +43,48 @@ export default {
     },
   },
   actions: {
+    setUser({commit}) {
+      commit("SET_USER_ID");
+      
+    },
+    // --------- sign in user from frontpage ----------
+    signinUser({ dispatch, commit }) {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          dispatch("updateUser", user);
+        })
+        .catch((err) => {
+          commit("SET_FEEDBACK", err.message);
+        });
+    },
+
+    updateUser({ state, commit }, user) {
+      console.log(user.uid);
+      console.log(state.feedback);
+
+      db.collection("users")
+        .doc(user.uid)
+        .set(
+          {
+            email: user.email,
+            name: user.displayName,
+            photo: user.photoURL,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          router.push({ name: "RoutineCategories" });
+          commit("SET_USER_ID", user.uid)
+        })
+        .catch((err) => {
+          commit("SET_FEEDBACK", err.message);
+        });
+    },
+
     // --------- user ----------
     fetchUser({ commit, state }) {
       db.collection("users")
