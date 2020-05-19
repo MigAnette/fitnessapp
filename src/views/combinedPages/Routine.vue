@@ -51,7 +51,6 @@ export default {
     return {
       pageName: Boolean,
       editRoutine: false,
-      id: "hej",
       modalContent: {
         text1: "Er du sikker på du vil anullere?",
         text2: "Din data",
