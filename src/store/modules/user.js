@@ -118,6 +118,7 @@ export default {
       db.collection("users")
         .doc(state.currentUser)
         .collection("history")
+        .orderBy("created_at", "desc")
         .get()
         .then((snapshot) => {
           const history = [];

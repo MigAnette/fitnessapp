@@ -1,14 +1,19 @@
 <template>
-  <div>
+  <v-container>
     <back-button></back-button>
-
+    <v-row justify="center">
+      <h1>
+        <span class="text-color">{{categoryName | capitalize }}</span> rutiner
+      </h1>
+    </v-row>
     <routine-card
       v-for="content in selectedRoutines"
       :key="content.id"
       :navName="navName"
       :content="content"
     ></routine-card>
-  </div>
+    <div class="navProtector"></div>
+  </v-container>
 </template>
 
 <script>
@@ -23,14 +28,16 @@ export default {
   },
   data() {
     return {
-      navName: "kategorier"
+      navName: "kategorier",
+      categoryName: this.$route.params.category_name
+
     };
   },
   methods: {
     updateCategoryName() {
       const name = this.$route.params.category_name;
       console.log(name);
-      
+
       this.$store.commit("routine/SET_CATEGORY_NAME", name);
     }
   },
