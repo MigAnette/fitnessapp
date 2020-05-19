@@ -51,7 +51,6 @@ export default {
     return {
       pageName: Boolean,
       editRoutine: false,
-      id: "hej",
       modalContent: {
         text1: "Er du sikker på du vil anullere?",
         text2: "Din data",
@@ -126,13 +125,6 @@ export default {
     this.$store.dispatch("routine/fetchIndividualRoutine");
     console.log("mounted");
   },
-  filters: {
-    capitalize: function(value) {
-      if (!value) return "";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    }
-  }
 };
 </script>
 

@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <v-container>
+    <v-row justify="center">
+      <h1 class="tex-center">
+        <span class="text-color">Udforsk</span> vores rutiner
+      </h1>
+    </v-row>
     <category-card v-for="content in routineCategory" :key="content.id" :content="content"></category-card>
-  </div>
+    <div class="navProtector"></div>
+  </v-container>
 </template>
 
 <script>

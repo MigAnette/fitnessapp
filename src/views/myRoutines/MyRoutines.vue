@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <routine-card
       v-for="(content, index) in myRoutines"
       :key="index"
@@ -11,10 +11,9 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
 
-    <!-- <v-btn :to="{name: 'MyRoutine', params: {routine_id: id}}">Rutine</v-btn> -->
-    <!-- <p>testing combined pages folder to see about dynamic components and routes:</p> -->
-    <!-- <v-btn :to="{name: 'Routine', params: {nav_name: navName, routine_id: id}}">XRutine</v-btn> -->
-  </div>
+      <div class="navProtector"></div>
+
+  </v-container>
 </template>
 
 <script>

@@ -1,40 +1,46 @@
 <template>
-  <div>
-     <v-btn small color="grey lighten-3" :to="{name: 'Profile'}" circle outlined fab>
+  <v-container>
+    <v-btn small color="grey lighten-3" :to="{name: 'Profile'}" circle outlined fab>
       <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
-  </v-btn>
-      <v-btn v-for="content in history" :key="content.id" @click="navigation(content.id)">{{content.name}} </v-btn>
-  </div>
+    </v-btn>
+    <v-row justify="center">
+      <h1>
+        <span class="text-color">Fuldførte</span> træninger
+      </h1>
+    </v-row>
+    <history-card v-for="content in history" :key="content.id" :content="content"></history-card>
+    <div class="navProtector"></div>
+  </v-container>
 </template>
 
 <script>
+import HistoryCard from "@/components/cards/HistoryCard.vue";
 
 export default {
-  name: 'History',
-
+  name: "History",
+  components: {
+    HistoryCard
+  },
   data() {
-  return {
-  };
- },
- methods: {
-   navigation(id) {
-     this.$store.commit("user/SET_HISTORY_ID", id);
-      this.$router.push({
-        name: "SingleHistory",
-        params: { history_id: id }
-      });
-   }
- },
- computed: {
-   history() {
-     return this.$store.getters['user/history'];
-   }
- },
- created() {
-   this.$store.dispatch("user/fetchHistory");
- }
+    return {
+      navName: "SingleHistory",
+    };
+  },
+  methods: {},
+  computed: {
+    history() {
+      return this.$store.getters["user/history"];
+    }
+  },
+  created() {
+    this.$store.dispatch("user/fetchHistory");
+  }
 };
 </script>
 
-<style>
+<style lang="scss">
+.navProtector {
+  height: 10vh;
+  bottom: 0;
+}
 </style>

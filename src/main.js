@@ -14,6 +14,12 @@ Vue.component("nav-bar-layout", NavBar);
 
 Vue.config.productionTip = false;
 
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+
 //wait for firebase auth to init before creating the app
 firebase.auth().onAuthStateChanged(() => {
   new Vue({
