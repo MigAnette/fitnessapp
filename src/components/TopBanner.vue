@@ -17,7 +17,14 @@ export default {
   props: ["content"],
   data() {
     return {};
-  }
+  },
+  // filters: {
+  //   highlight(value) {
+  //     if (!value) return "";
+  //     value = value.toString();
+  //     value.slice(0, 5); 
+  //   }
+  // }
 };
 </script>
 
