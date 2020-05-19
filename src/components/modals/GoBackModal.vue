@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="400">
     <template v-slot:activator="{ on }">
-      <v-btn small color="grey lighten-3" v-on="on" circle outlined fab>
-        <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+      <v-btn small absolute class="ma-2" color="grey lighten-3" v-on="on" circle outlined fab>
+        <v-icon color="#FFAE8A" large>mdi-arrow-left</v-icon>
       </v-btn>
     </template>
 

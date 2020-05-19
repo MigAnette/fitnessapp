@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-btn small color="grey lighten-3" :to="{name: 'Profile'}" circle outlined fab>
-      <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+      <v-icon color="#FFAE8A" large>mdi-arrow-left</v-icon>
     </v-btn>
     <v-row justify="center">
       <h1>

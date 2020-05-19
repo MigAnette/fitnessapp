@@ -12,7 +12,7 @@
         fab
         v-on="on"
       >
-        <v-icon>mdi-trash-can</v-icon>
+        <v-icon color="#ECEFF1">mdi-trash-can</v-icon>
       </v-btn>
     </template>
 

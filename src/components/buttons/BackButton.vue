@@ -1,6 +1,6 @@
 <template>
-  <v-btn small color="grey lighten-3" @click="goBack" circle outlined fab>
-      <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+  <v-btn absolute class="ma-2" small color="grey lighten-3" @click="goBack" circle outlined fab>
+      <v-icon color="#FFAE8A" large>mdi-arrow-left</v-icon>
   </v-btn>
 </template>
 
