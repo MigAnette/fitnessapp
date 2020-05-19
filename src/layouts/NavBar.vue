@@ -1,18 +1,15 @@
 <template>
-<div>
-
-  <v-container>
+  <div>
     <slot></slot>
-  </v-container>
-  <bottom-nav></bottom-nav>
-</div>
+    <bottom-nav></bottom-nav>
+  </div>
 </template>
 
 <script>
 import BottomNav from "@/components/layout/BottomNav.vue";
 
 export default {
-     components: {
+  components: {
     BottomNav
   }
 };
