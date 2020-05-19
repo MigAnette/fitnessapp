@@ -14,6 +14,9 @@ export default {
     feedback: "",
   },
   mutations: {
+    EMPTY_USER_ID(state) {
+      state.currentUser = "";
+    },
 
     SET_USER_ID(state) {
       state.currentUser = firebase.auth().currentUser.uid;
@@ -43,9 +46,20 @@ export default {
     },
   },
   actions: {
-    setUser({commit}) {
+    signOut({ commit }) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          commit("EMPTY_USER_ID");
+          router.push({ name: "FrontPage" });
+        })
+        .catch((err) => {
+          commit("SET_FEEDBACK", err);
+        });
+    },
+    setUser({ commit }) {
       commit("SET_USER_ID");
-      
     },
     // --------- sign in user from frontpage ----------
     signinUser({ dispatch, commit }) {
@@ -78,7 +92,7 @@ export default {
         )
         .then(() => {
           router.push({ name: "RoutineCategories" });
-          commit("SET_USER_ID", user.uid)
+          commit("SET_USER_ID", user.uid);
         })
         .catch((err) => {
           commit("SET_FEEDBACK", err.message);
