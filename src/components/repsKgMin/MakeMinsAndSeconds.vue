@@ -4,7 +4,7 @@
       Mins:
     </v-col>
     <v-col cols="4">
-      <v-text-field dense class="corner center-text-input" outlined v-model.number="mins"></v-text-field>
+      <v-text-field dense class="corner center-text-input" outlined v-model.number="mins"  type="number"></v-text-field>
     </v-col>
   </v-row>
 </template>

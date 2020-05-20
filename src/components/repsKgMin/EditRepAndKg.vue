@@ -4,10 +4,10 @@
       <h4 class="text-color">{{index + 1}}.</h4>
     </v-col>
     <v-col cols="3">
-      <v-text-field dense class="corner center-text-input" outlined v-model.number="rep"></v-text-field>
+      <v-text-field dense class="corner center-text-input" outlined v-model.number="rep"  type="number"></v-text-field>
     </v-col>
     <v-col cols="3">
-      <v-text-field dense class="corner center-text-input" suffix="Kg" outlined v-model.number="kg"></v-text-field>
+      <v-text-field dense class="corner center-text-input" suffix="Kg" outlined v-model.number="kg"  type="number"></v-text-field>
     </v-col>
     <v-col cols="1">
       <v-btn

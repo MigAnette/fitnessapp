@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-col cols="3">Mins:</v-col>
     <v-col cols="6">
-      <v-text-field dense class="corner center-text-input" outlined v-model.number="mins"></v-text-field>
+      <v-text-field dense class="corner center-text-input" outlined v-model.number="mins" type="number"></v-text-field>
     </v-col>
     <v-col cols="1">
       <v-btn
