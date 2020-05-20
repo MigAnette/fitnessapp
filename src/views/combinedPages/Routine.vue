@@ -31,6 +31,7 @@
           :content="routine"
         ></completed-routine-modal>
       </v-row>
+      <div class="navProtector"></div>
     </v-container>
   </div>
 </template>
@@ -73,7 +74,6 @@ export default {
     deleteRoutine() {
       this.$store.dispatch("routine/deleteRoutine");
       this.$router.push({ name: "MyRoutines" });
-      console.log(this.routine.id);
     },
     updateRoutineId() {
       const id = this.$route.params.routine_id;
@@ -120,16 +120,10 @@ export default {
   },
   created() {
     this.updateRoutineId();
-    console.log("created");
-
     this.categoryOrMine();
-  },
-  beforeMount() {
-    console.log("beforeMount");
   },
   mounted() {
     this.$store.dispatch("routine/fetchIndividualRoutine");
-    console.log("mounted");
   }
 };
 </script>
