@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-row justify="center">
+      <h1 class="tex-center">
+        <span class="text-color">Dine</span> rutiner
+      </h1>
+    </v-row>
     <routine-card
       v-for="(content, index) in myRoutines"
       :key="index"
@@ -11,8 +16,7 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
 
-      <div class="navProtector"></div>
-
+    <div class="navProtector"></div>
   </v-container>
 </template>
 
@@ -37,7 +41,7 @@ export default {
   },
   created() {
     this.$store.dispatch("routine/fetchMyRoutines");
-  },
+  }
 };
 </script>
 
