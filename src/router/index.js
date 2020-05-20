@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import firebase from 'firebase/app' 
+require('firebase/auth')
 
 // components imported for routing
 import FrontPage from "@/views/FrontPage.vue";
@@ -35,19 +37,22 @@ const routes = [
     path: "/:nav_name/rutine/:routine_id",
     name: "Routine",
     component: Routine,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   // Routes for Routine categories
   {
     path: "/kategorier",
     name: "RoutineCategories",
-    meta: { layout: "nav-bar" },
+    meta: { layout: "nav-bar", requiresAuth: true },
     component: RoutineCategories,
   },
   {
     path: "/kategorier/:category_name",
     name: "SelectedCategory",
-    meta: { layout: "nav-bar" },
+    meta: { layout: "nav-bar", requiresAuth: true },
     component: SelectedCategory,
   },
 
@@ -55,37 +60,47 @@ const routes = [
   {
     path: "/minerutiner",
     name: "MyRoutines",
-    meta: { layout: "nav-bar" },
+    meta: { layout: "nav-bar", requiresAuth: true },
     component: MyRoutines,
   },
   {
     path: "/minerutiner/lav-rutine",
     name: "MakeRoutine",
     component: MakeRoutine,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/minerutiner/lav-rutine/øvelser",
     name: "PickExercise",
     component: PickExercise,
+    meta: {
+      requiresAuth: true
+    }
   },
 
   // Routines for Profile
   {
     path: "/profil",
     name: "Profile",
-    meta: { layout: "nav-bar" },
+    meta: { layout: "nav-bar", requiresAuth: true },
     component: Profile,
   },
   {
     path: "/profil/historie",
     name: "History",
-    meta: { layout: "nav-bar" },
+    meta: { layout: "nav-bar", requiresAuth: true },
     component: History,
+    
   },
   {
     path: "/profil/historie/:history_id",
     name: "SingleHistory",
     component: SingleHistory,
+    meta: {
+      requiresAuth: true
+    } 
   },
 ];
 
@@ -93,6 +108,24 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+// Comes from geo-ninjas router:
+router.beforeEach((to, from, next) => {
+  //check to see if route requires auth
+  if(to.matched.some(rec => rec.meta.requiresAuth)){
+    //check auth state of user
+    let user = firebase.auth().currentUser
+    if(user) {
+      //user signed in, proceed to route
+      next()
+    } else {
+      //no user signed up, redirect to signUp
+      next({name: 'FrontPage'});
+    }
+  }else {
+    next()
+  }
 });
 
 export default router;
