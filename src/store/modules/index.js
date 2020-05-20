@@ -9,4 +9,5 @@ const requireModule = require.context(".", false, /\.js$/); //extract js files i
 
       modules[moduleName] = requireModule(fileName).default;
     });
+    
     export default modules;
