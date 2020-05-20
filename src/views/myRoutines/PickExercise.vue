@@ -1,22 +1,27 @@
 <template>
-  <v-container>
+  <div>
     <back-button></back-button>
-    <v-row justify="center">
-      <h1><span class="text-color">Vælg</span> Øvelse</h1>
-    </v-row>
+    <top-banner content="Vælg Øvelse"></top-banner>
+
+
+  <v-container>
     <pick-exercise-card v-for="content in pickExercises" :key="content.id" :content="content"></pick-exercise-card>
   </v-container>
+  </div>
 </template>
 
 <script>
 import PickExerciseCard from "@/components/cards/PickExerciseCard.vue";
 import BackButton from "@/components/buttons/BackButton.vue";
+import TopBanner from "@/components/TopBanner.vue";
 
 export default {
   name: "PickExercise",
   components: {
     PickExerciseCard,
-    BackButton
+    BackButton,
+    TopBanner
+
   },
   data() {
     return {};

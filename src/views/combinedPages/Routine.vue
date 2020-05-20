@@ -1,34 +1,39 @@
 <template>
   <!-- Disclosure: pageName = myRoutines, !pageName = category -->
-  <v-container>
+  <div>
     <back-button v-if="!markChecked"></back-button>
     <go-back-modal v-if="markChecked" @goBack="goBack" :content="modalContent"></go-back-modal>
+    <delete-modal
+      :markChecked="markChecked"
+      @deleteRoutine="deleteRoutine"
+      :content="deleteModalContent"
+      :pageName="pageName"
+    ></delete-modal>
+    <top-banner :content="routine.name"></top-banner>
 
-    <delete-modal :markChecked="markChecked" @deleteRoutine="deleteRoutine" :content="deleteModalContent" :pageName="pageName"></delete-modal>
+    <v-container>
+      <v-row justify="center" v-if="!pageName">
+        <h4>{{routine.category | capitalize}}</h4>
+      </v-row>
 
-    <v-row justify="center">
-      <h1>{{routine.name}}</h1>
-    </v-row>
-    <v-row justify="center" v-if="!pageName">
-      <h4>{{routine.category | capitalize}}</h4>
-    </v-row>
+      <exercise-card
+        v-for="(content, index) in routine.exercises"
+        :editRoutine="editRoutine"
+        :i="index"
+        :content="content"
+        :key="index"
+      ></exercise-card>
 
-    <exercise-card
-      v-for="(content, index) in routine.exercises"
-      :editRoutine="editRoutine"
-      :i="index"
-      :content="content"
-      :key="index"
-    ></exercise-card>
-
-    <v-row justify="center">
-      <completed-routine-modal
-        :exercisesMarked="disabledButton"
-        :pageName="pageName"
-        :content="routine"
-      ></completed-routine-modal>
-    </v-row>
-  </v-container>
+      <v-row justify="center">
+        <completed-routine-modal
+          :exercisesMarked="disabledButton"
+          :pageName="pageName"
+          :content="routine"
+        ></completed-routine-modal>
+      </v-row>
+      <div class="navProtector"></div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -37,6 +42,7 @@ import ExerciseCard from "@/components/cards/ExerciseCard.vue";
 import GoBackModal from "@/components/modals/GoBackModal.vue";
 import DeleteModal from "@/components/modals/DeleteModal.vue";
 import CompletedRoutineModal from "@/components/modals/CompletedRoutineModal.vue";
+import TopBanner from "@/components/TopBanner.vue";
 
 export default {
   name: "Routine",
@@ -45,7 +51,8 @@ export default {
     ExerciseCard,
     GoBackModal,
     DeleteModal,
-    CompletedRoutineModal
+    CompletedRoutineModal,
+    TopBanner
   },
   data() {
     return {
@@ -67,7 +74,6 @@ export default {
     deleteRoutine() {
       this.$store.dispatch("routine/deleteRoutine");
       this.$router.push({ name: "MyRoutines" });
-      console.log(this.routine.id);
     },
     updateRoutineId() {
       const id = this.$route.params.routine_id;
@@ -114,17 +120,11 @@ export default {
   },
   created() {
     this.updateRoutineId();
-    console.log("created");
-
     this.categoryOrMine();
-  },
-  beforeMount() {
-    console.log("beforeMount");
   },
   mounted() {
     this.$store.dispatch("routine/fetchIndividualRoutine");
-    console.log("mounted");
-  },
+  }
 };
 </script>
 

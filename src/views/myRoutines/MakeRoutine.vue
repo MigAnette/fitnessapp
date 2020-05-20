@@ -1,37 +1,41 @@
 <template>
-  <v-container>
-    <go-back-modal @goBack="goBack" :content="modalContent"></go-back-modal>
-    <v-row justify="center">
-      <h1>
-        <span class="text-color">Lav</span> Rutine
-      </h1>
-    </v-row>
+  <div>
+      <go-back-modal @goBack="goBack" :content="modalContent"></go-back-modal>
+    <top-banner content="Lav Rutine"></top-banner>
+
     <v-container>
-      <v-row>
-        <v-text-field label="Navn på rutine" v-model="routineName"></v-text-field>
+      <v-row justify="center">
+        <!-- <h1>
+          <span class="text-color">Lav</span> Rutine
+        </h1> -->
       </v-row>
-      <v-row>
-        <v-textarea class="text-area-height" label="Beskrivelse" v-model="routineDescription"></v-textarea>
+      <v-container>
+        <v-row>
+          <v-text-field label="Navn på rutine" v-model="routineName"></v-text-field>
+        </v-row>
+        <v-row>
+          <v-textarea class="text-area-height" label="Beskrivelse" v-model="routineDescription"></v-textarea>
+        </v-row>
+      </v-container>
+
+      <make-routine-exercise-card
+        v-for="(content, index) in exercise"
+        :key="index"
+        :i="index"
+        :content="content"
+      ></make-routine-exercise-card>
+
+      <v-row justify="center">
+        <navigation-button
+          class="mr-3 my-8"
+          :routeName="excersice"
+          buttonValue="Øvelser"
+          :working="limited"
+        ></navigation-button>
+        <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
       </v-row>
     </v-container>
-
-    <make-routine-exercise-card
-      v-for="(content, index) in exercise"
-      :key="index"
-      :i="index"
-      :content="content"
-    ></make-routine-exercise-card>
-
-    <v-row justify="center">
-      <navigation-button
-        class="mr-3 my-8"
-        :routeName="excersice"
-        buttonValue="Øvelser"
-        :working="limited"
-      ></navigation-button>
-      <functions-button class="mr-3 my-8" buttonValue="Færdig" @functionClicked="handleCreate"></functions-button>
-    </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -40,6 +44,8 @@ import FunctionsButton from "@/components/buttons/FunctionsButton.vue";
 import MakeRoutineExerciseCard from "@/components/cards/MakeRoutineExerciseCard.vue";
 import GoBackModal from "@/components/modals/GoBackModal.vue";
 import * as easings from "vuetify/es5/services/goto/easing-patterns";
+import TopBanner from "@/components/TopBanner.vue";
+
 
 export default {
   name: "MakeRoutine",
@@ -47,7 +53,9 @@ export default {
     NavigationButton,
     FunctionsButton,
     MakeRoutineExerciseCard,
-    GoBackModal
+    GoBackModal,
+    TopBanner
+
   },
   data() {
     return {
@@ -62,7 +70,7 @@ export default {
       easings: Object.keys(easings),
       modalContent: {
         text1: "Er du sikker på du vil anullere?",
-        text2: "Din data",  
+        text2: "Din data",
         text3: "vil gå tabt"
       }
     };
@@ -141,10 +149,9 @@ export default {
   textarea {
     height: 90px;
   }
-  
 }
 .row {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-  }
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
 </style>

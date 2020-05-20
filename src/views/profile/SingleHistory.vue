@@ -1,37 +1,47 @@
 <template>
-  <v-container>
-    <v-btn small color="grey lighten-3" :to="{name: 'History'}" circle outlined fab>
-      <v-icon color="#FFAE8A">mdi-arrow-left</v-icon>
+  <div>
+    <v-btn
+      small
+      absolute
+      class="ma-2"
+      color="grey lighten-3"
+      :to="{name: 'History'}"
+      circle
+      outlined
+      fab
+    >
+      <v-icon color="#FFAE8A" large>mdi-arrow-left</v-icon>
     </v-btn>
-
-    <v-row justify="center">
-      <h1>{{singleHistory.name}}</h1>
-    </v-row>
+    <top-banner :content="singleHistory.name"></top-banner>
 
     <v-container>
-      <v-row>
-        <h3>Beskrivelse</h3>
-      </v-row>
-      <v-row>
-        <p>{{singleHistory.description}}</p>
-      </v-row>
-    </v-container>
+      <div class="ml-7">
+        <v-row>
+          <h3>Beskrivelse</h3>
+        </v-row>
+        <v-row>
+          <p>{{singleHistory.description}}</p>
+        </v-row>
+      </div>
 
-    <history-exercise-card
-      v-for="(content, index) in singleHistory.exercises"
-      :content="content"
-      :key="index"
-    ></history-exercise-card>
-  </v-container>
+      <history-exercise-card
+        v-for="(content, index) in singleHistory.exercises"
+        :content="content"
+        :key="index"
+      ></history-exercise-card>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import HistoryExerciseCard from "@/components/cards/HistoryExerciseCard.vue";
+import TopBanner from "@/components/TopBanner.vue";
 
 export default {
   name: "SingleHistory",
   components: {
-    HistoryExerciseCard
+    HistoryExerciseCard,
+    TopBanner
   },
   data() {
     return {};
