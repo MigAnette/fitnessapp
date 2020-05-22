@@ -19,9 +19,9 @@
       </v-row>
 
       <v-row justify="center" class="my-8">
-        <div class="completed-circle icon-circle pt-2">
+        <div class="completed-circle icon-circle">
           <v-row justify="center" align="center">
-            <v-icon color="green" x-large style="font-size: 123px;">mdi-trophy-variant</v-icon>
+            <v-icon color="green" x-large style="font-size: 90px;"  justify="center" >mdi-trophy-variant</v-icon>
           </v-row>
         </div>
       </v-row>
@@ -34,26 +34,26 @@
       </v-row>
 
       <v-row justify="center">
-        <v-col cols="4">
+        <v-col cols="4" class="coll-center">
           <h4 class="text-center">Tid</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-4">
+            <v-row justify="center" >
               <h2 class="text-color">9.50</h2>
             </v-row>
           </div>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="4" class="coll-center">
           <h4 class="text-center">Kj</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-4">
+            <v-row justify="center" >
               <h2 class="text-color">85</h2>
             </v-row>
           </div>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="4" class="coll-center">
           <h4 class="text-center">Øvelser</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-4">
+            <v-row justify="center" >
               <h2 class="text-color">{{exercises}}</h2>
             </v-row>
           </div>
@@ -118,16 +118,26 @@ export default {
   border-radius: 100%;
 }
 .icon-circle {
-  width: 143px;
-  height: 143px;
+  width: 135px;
+  height: 135px;
+  display: flex;
 }
+
+.coll-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .text-circle {
-  width: 78px;
-  height: 78px;
+  width: 80px;
+  height: 80px;
   margin-right: 0;
+  display: flex;
+  align-items: center;
 
   h2 {
-    font-size: 21px;
+    font-size: 24px;
     text-decoration: underline;
   }
 }

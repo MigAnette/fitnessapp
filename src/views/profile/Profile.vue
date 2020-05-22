@@ -96,7 +96,7 @@
       <v-row justify="center">
         <achievement-button v-for="(achiev, index) in achievements" :key="index" :content="achiev"></achievement-button>
       </v-row>
-      <v-row justify="center">
+      <v-row justify="center" class="mt-4" >
         <navigation-button buttonValue="Se Alle"></navigation-button>
       </v-row>
       <v-row justify="center" class="my-12">
