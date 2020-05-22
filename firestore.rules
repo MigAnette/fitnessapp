@@ -9,6 +9,9 @@ service cloud.firestore {
     }
     match/users/{userId} {
     	allow read, write: if request.auth.uid != null;
+      match /history/{history=**} {
+      	allow read, write: if request.auth.uid !=null;
+      }
     }
   }
 }
