@@ -21,7 +21,7 @@
       <v-row justify="center" class="my-8">
         <div class="completed-circle icon-circle pt-2">
           <v-row justify="center" align="center">
-            <v-icon color="green" x-large style="font-size: 133px;">mdi-trophy-variant</v-icon>
+            <v-icon color="green" x-large style="font-size: 123px;">mdi-trophy-variant</v-icon>
           </v-row>
         </div>
       </v-row>
@@ -37,41 +37,33 @@
         <v-col cols="4">
           <h4 class="text-center">Tid</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-2">
-            <h2 class="text-color">9.5</h2>
+            <v-row justify="center" class="pt-4">
+              <h2 class="text-color">9.50</h2>
             </v-row>
           </div>
         </v-col>
         <v-col cols="4">
           <h4 class="text-center">Kj</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-2">
-            <h2 class="text-color">85</h2>
+            <v-row justify="center" class="pt-4">
+              <h2 class="text-color">85</h2>
             </v-row>
           </div>
         </v-col>
         <v-col cols="4">
           <h4 class="text-center">Øvelser</h4>
           <div class="completed-circle text-circle">
-            <v-row justify="center" class="pt-2">
+            <v-row justify="center" class="pt-4">
               <h2 class="text-color">{{exercises}}</h2>
             </v-row>
           </div>
         </v-col>
       </v-row>
       <v-divider color="#707070"></v-divider>
-      <v-row>
-        <v-col>
-          <navigation-button :routeName="routeName" buttonValue="Videre"></navigation-button>
-        </v-col>
-        <v-col>
-          <v-btn
-            color="#3D3D3D"
-            rounded
-            class="white--text"
-            :to="{name: historyName}"
-          >Historik</v-btn>
-        </v-col>
+      <v-row justify="center" align="center" class="mt-3">
+        <navigation-button :routeName="routeName" buttonValue="Videre"></navigation-button>
+
+        <v-btn color="#3D3D3D" rounded class="white--text ml-5" :to="{name: historyName}">Historik</v-btn>
       </v-row>
     </v-card>
   </v-dialog>
@@ -90,7 +82,7 @@ export default {
     return {
       dialog: false,
       exercises: 0,
-      historyName: "History",
+      historyName: "History"
     };
   },
   methods: {
@@ -126,8 +118,8 @@ export default {
   border-radius: 100%;
 }
 .icon-circle {
-  width: 153px;
-  height: 153px;
+  width: 143px;
+  height: 143px;
 }
 .text-circle {
   width: 78px;
@@ -135,7 +127,7 @@ export default {
   margin-right: 0;
 
   h2 {
-    font-size: 38px;
+    font-size: 21px;
     text-decoration: underline;
   }
 }
