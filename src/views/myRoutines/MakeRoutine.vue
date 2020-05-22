@@ -86,7 +86,6 @@ export default {
       }
     },
     goBack() {
-      console.log("nice");
       this.$store.commit("routine/EMPTY_ROUTINE");
       this.$store.commit("exercise/EMPTY_EXERCISE_TEST");
       this.$router.push({ name: this.myRoutines });

@@ -76,10 +76,7 @@ export default {
         });
     },
 
-    updateUser({ state, commit }, user) {
-      console.log(user.uid);
-      console.log(state.feedback);
-
+    updateUser({ commit }, user) {
       db.collection("users")
         .doc(user.uid)
         .set(

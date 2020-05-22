@@ -17,6 +17,7 @@
     </v-btn>
 
     <div class="navProtector"></div>
+    <div class="navProtector"></div>
   </v-container>
 </template>
 

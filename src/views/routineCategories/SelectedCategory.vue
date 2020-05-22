@@ -37,8 +37,6 @@ export default {
   methods: {
     updateCategoryName() {
       const name = this.$route.params.category_name;
-      console.log(name);
-
       this.$store.commit("routine/SET_CATEGORY_NAME", name);
     }
   },

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import firebase from 'firebase/app' 
-require('firebase/auth')
+import firebase from "firebase/app";
+require("firebase/auth");
 
 // components imported for routing
 import FrontPage from "@/views/FrontPage.vue";
@@ -38,8 +38,8 @@ const routes = [
     name: "Routine",
     component: Routine,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
 
   // Routes for Routine categories
@@ -68,16 +68,16 @@ const routes = [
     name: "MakeRoutine",
     component: MakeRoutine,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   {
     path: "/minerutiner/lav-rutine/øvelser",
     name: "PickExercise",
     component: PickExercise,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
 
   // Routines for Profile
@@ -92,15 +92,14 @@ const routes = [
     name: "History",
     meta: { layout: "nav-bar", requiresAuth: true },
     component: History,
-    
   },
   {
     path: "/profil/historie/:history_id",
     name: "SingleHistory",
     component: SingleHistory,
     meta: {
-      requiresAuth: true
-    } 
+      requiresAuth: true,
+    },
   },
 ];
 
@@ -108,23 +107,26 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });
 
 // Comes from geo-ninjas router:
 router.beforeEach((to, from, next) => {
   //check to see if route requires auth
-  if(to.matched.some(rec => rec.meta.requiresAuth)){
+  if (to.matched.some((rec) => rec.meta.requiresAuth)) {
     //check auth state of user
-    let user = firebase.auth().currentUser
-    if(user) {
+    let user = firebase.auth().currentUser;
+    if (user) {
       //user signed in, proceed to route
-      next()
+      next();
     } else {
       //no user signed up, redirect to signUp
-      next({name: 'FrontPage'});
+      next({ name: "FrontPage" });
     }
-  }else {
-    next()
+  } else {
+    next();
   }
 });
 

@@ -12,14 +12,14 @@
           <v-row>
             <h3>{{user.name}}</h3>
           </v-row>
-          <v-row>
+         
             <v-row class="mt-2">
               <h3 class="text-color font-weight-bold">14</h3>
             </v-row>
             <v-row>
               <h5 class="caption">Kalorier brændt i denne uge</h5>
             </v-row>
-          </v-row>
+         
           <v-row>
             <v-row class="mt-3">
               <h4 class="font-weight-bold">1 ud af 3</h4>
@@ -95,7 +95,9 @@
       </v-row>
       <v-row justify="center">
         <achievement-button v-for="(achiev, index) in achievements" :key="index" :content="achiev"></achievement-button>
-          <navigation-button buttonValue="Se Alle"></navigation-button>
+      </v-row>
+      <v-row justify="center">
+        <navigation-button buttonValue="Se Alle"></navigation-button>
       </v-row>
       <v-row justify="center" class="my-12">
         <sign-out-modal content="Er du sikker på du vil logge af?" @signOut="signOut"></sign-out-modal>
