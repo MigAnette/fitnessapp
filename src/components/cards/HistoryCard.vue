@@ -8,7 +8,7 @@
     >
       <v-card-subtitle
         class="white--text"
-      >{{format(new Date(content.created_at.toDate()), 'dd/MM/yyyy, k.m')}}</v-card-subtitle>
+      >{{format(new Date(content.created_at.toDate()), 'dd/MM/yyyy, k.mm')}}</v-card-subtitle>
       <v-card-text class="white--text pt-3 pb-0">{{exercises}} Øvelser</v-card-text>
       <v-card-title v-if="!content.category" class="white--text pt-0">{{content.name}} </v-card-title>
       <v-card-title v-if="content.category" class="white--text pt-0">
