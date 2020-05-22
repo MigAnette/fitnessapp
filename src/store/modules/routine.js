@@ -20,7 +20,8 @@ export default {
     },
 
     EDIT_KG(state, payload) {
-      state.routine.exercises[payload.i].repsAndKg[payload.index].kg = payload.value;
+      state.routine.exercises[payload.i].repsAndKg[payload.index].kg =
+        payload.value;
     },
 
     EDIT_MINS(state, payload) {
@@ -73,28 +74,31 @@ export default {
   actions: {
     // --------- Routine----------
     deleteRoutine({ state }) {
-      console.log(state.routineId);
-      db.collection("routine").doc(state.routineId).delete();
-      
+      db.collection("routine")
+        .doc(state.routineId)
+        .delete();
     },
     saveDoneRoutine({ state, rootState }) {
       const now = new Date();
-      console.log(state.routine);
-      db.collection("users").doc(rootState.user.currentUser).collection("history").add({
-        ...state.routine,
-        created_at: firebase.firestore.Timestamp.fromDate(now)
-      });
+      db.collection("users")
+        .doc(rootState.user.currentUser)
+        .collection("history")
+        .add({
+          ...state.routine,
+          created_at: firebase.firestore.Timestamp.fromDate(now),
+        });
     },
 
     // --------- makeRoutine----------
-    createRoutine({ state, rootState }) {
-      console.log(rootState.exercise.exerciseTest);
+    createRoutine({ state, rootState, commit }) {
       db.collection("routine").add({
         author: rootState.user.currentUser,
         description: state.routineDescription,
         name: state.routineName,
         exercises: rootState.exercise.exerciseTest,
       });
+      commit("exercise/EMPTY_EXERCISE_TEST", null , {root: true});
+      commit("EMPTY_ROUTINE");
     },
     // --------- selectedRoutines----------
     fetchSelectedRoutines({ commit, state }) {

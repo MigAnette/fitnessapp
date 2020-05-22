@@ -36,11 +36,19 @@
       <v-row justify="center">
         <v-col cols="4">
           <h4 class="text-center">Tid</h4>
-          <div class="completed-circle text-circle"></div>
+          <div class="completed-circle text-circle">
+            <v-row justify="center" class="pt-2">
+            <h2 class="text-color">9.5</h2>
+            </v-row>
+          </div>
         </v-col>
         <v-col cols="4">
           <h4 class="text-center">Kj</h4>
-          <div class="completed-circle text-circle"></div>
+          <div class="completed-circle text-circle">
+            <v-row justify="center" class="pt-2">
+            <h2 class="text-color">85</h2>
+            </v-row>
+          </div>
         </v-col>
         <v-col cols="4">
           <h4 class="text-center">Øvelser</h4>
