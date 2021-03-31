@@ -1,5 +1,8 @@
 # fitnessapp
 
+## Visit website
+View on mobile screen: https://fitnessapp-41c9d.web.app/
+
 ## Project setup
 ```
 npm install
