@@ -1,6 +1,6 @@
 # fitnessapp
 
-## Visit website
+## Visit webapp
 View on mobile screen: https://fitnessapp-41c9d.web.app/
 
 ## Project setup
