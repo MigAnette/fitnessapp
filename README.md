@@ -3,6 +3,9 @@
 ## Visit webapp
 View on mobile screen: https://fitnessapp-41c9d.web.app/
 
+## See mockup
+Check out the mockup here: https://www.figma.com/file/IwNs9pnbaykyzo1B9HTAhh/WorkoutBuddy?node-id=0%3A1
+
 ## Project setup
 ```
 npm install
